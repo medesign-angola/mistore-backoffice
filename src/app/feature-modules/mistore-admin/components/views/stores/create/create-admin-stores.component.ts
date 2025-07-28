@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'mi-create-admin-stores',
-  templateUrl: './create-admin-stores.component.html',
-  styleUrl: './create-admin-stores.component.css'
+    selector: 'mi-create-admin-stores',
+    templateUrl: './create-admin-stores.component.html',
+    styleUrl: './create-admin-stores.component.css',
+    standalone: false
 })
 export class CreateAdminStoresComponent {
   categories: any[] = [

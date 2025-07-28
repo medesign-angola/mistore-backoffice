@@ -3,9 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { HelpTabsEnum } from '@store/enums/help-tabs.enum';
 
 @Component({
-  selector: 'mi-help',
-  templateUrl: './help.component.html',
-  styleUrl: './help.component.css'
+    selector: 'mi-help',
+    templateUrl: './help.component.html',
+    styleUrl: './help.component.css',
+    standalone: false
 })
 export class HelpComponent implements OnInit {
 

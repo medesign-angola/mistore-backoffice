@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'mi-create-admin-categories',
-  templateUrl: './create-admin-categories.component.html',
-  styleUrl: './create-admin-categories.component.css'
+    selector: 'mi-create-admin-categories',
+    templateUrl: './create-admin-categories.component.html',
+    styleUrl: './create-admin-categories.component.css',
+    standalone: false
 })
 export class CreateAdminCategoriesComponent {
 

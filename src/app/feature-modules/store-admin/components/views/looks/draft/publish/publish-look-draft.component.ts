@@ -16,9 +16,10 @@ import { IProduct, IProductResponse } from '@store/models/product.model';
 import { combineLatest } from 'rxjs';
 
 @Component({
-  selector: 'mi-publish-look-draft',
-  templateUrl: './publish-look-draft.component.html',
-  styleUrl: './publish-look-draft.component.css'
+    selector: 'mi-publish-look-draft',
+    templateUrl: './publish-look-draft.component.html',
+    styleUrl: './publish-look-draft.component.css',
+    standalone: false
 })
 export class PublishLookDraftComponent extends TableComponentExtender implements OnInit, AfterViewInit {
   

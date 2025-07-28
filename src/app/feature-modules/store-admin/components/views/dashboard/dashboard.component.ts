@@ -6,9 +6,10 @@ import { IWidget } from '@shared/interfaces/widget.interface';
 import { SVGRefEnum } from '@shared/Enums/svg-ref.enum';
 
 @Component({
-  selector: 'mi-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+    selector: 'mi-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.css',
+    standalone: false
 })
 export class DashboardComponent {
 

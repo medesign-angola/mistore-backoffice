@@ -12,9 +12,10 @@ import { AlertService, LogStatus } from '@core/services/alert/alert.service';
 import { LookStatus } from '@store/enums/look-status.enum';
 
 @Component({
-  selector: 'mi-looks',
-  templateUrl: './looks.component.html',
-  styleUrl: './looks.component.css'
+    selector: 'mi-looks',
+    templateUrl: './looks.component.html',
+    styleUrl: './looks.component.css',
+    standalone: false
 })
 export class LooksComponent
 extends Unsubscriber

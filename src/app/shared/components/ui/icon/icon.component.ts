@@ -6,8 +6,9 @@ import { IMenuIconRef } from '@shared/interfaces/icon-ref.interface';
 import { ISidebarIcon } from '@shared/interfaces/icons.interface';
 
 @Component({
-  selector: 'mi-icon',
-  templateUrl: './icon.component.html',
+    selector: 'mi-icon',
+    templateUrl: './icon.component.html',
+    standalone: false
 })
 export class IconComponent implements OnInit, OnChanges {
   

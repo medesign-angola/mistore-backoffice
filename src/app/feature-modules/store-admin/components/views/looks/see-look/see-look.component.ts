@@ -16,9 +16,10 @@ import { IProduct, IProductResponse } from '@store/models/product.model';
 import { combineLatest } from 'rxjs';
 
 @Component({
-  selector: 'mi-see-look',
-  templateUrl: './see-look.component.html',
-  styleUrl: './see-look.component.css'
+    selector: 'mi-see-look',
+    templateUrl: './see-look.component.html',
+    styleUrl: './see-look.component.css',
+    standalone: false
 })
 export class SeeLookComponent extends TableComponentExtender implements OnInit, AfterViewInit {
   

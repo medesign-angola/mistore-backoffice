@@ -22,9 +22,10 @@ import { catchError, delay, forkJoin, map, of, tap, throwError } from 'rxjs';
 import { LookStatus } from '@store/enums/look-status.enum';
 
 @Component({
-  selector: 'mi-products',
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.css'
+    selector: 'mi-products',
+    templateUrl: './products.component.html',
+    styleUrl: './products.component.css',
+    standalone: false
 })
 export class ProductsComponent extends TableComponentExtender implements OnInit, TableComponentInterface, OnDestroy {
   

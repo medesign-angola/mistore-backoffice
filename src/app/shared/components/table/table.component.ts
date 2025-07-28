@@ -1,9 +1,10 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'mi-table',
-  templateUrl: './table.component.html',
-  styleUrl: './table.component.css'
+    selector: 'mi-table',
+    templateUrl: './table.component.html',
+    styleUrl: './table.component.css',
+    standalone: false
 })
 export class TableComponent implements OnInit, OnChanges {
   

@@ -2,9 +2,10 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { HorizontalBarChart } from '@shared/interfaces/hz-bar-chart.interface';
 
 @Component({
-  selector: 'hz-bar',
-  templateUrl: './hz-bar.component.html',
-  styleUrl: './hz-bar.component.css'
+    selector: 'hz-bar',
+    templateUrl: './hz-bar.component.html',
+    styleUrl: './hz-bar.component.css',
+    standalone: false
 })
 export class HzBarComponent implements OnInit, OnChanges {
   @Input() chartData!: HorizontalBarChart;

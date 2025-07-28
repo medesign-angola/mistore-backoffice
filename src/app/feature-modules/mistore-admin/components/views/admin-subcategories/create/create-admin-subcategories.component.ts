@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { IProductCategory } from '@core/base-models/base/product-category.model';
 
 @Component({
-  selector: 'mi-create-admin-subcategories',
-  templateUrl: './create-admin-subcategories.component.html',
-  styleUrl: './create-admin-subcategories.component.css'
+    selector: 'mi-create-admin-subcategories',
+    templateUrl: './create-admin-subcategories.component.html',
+    styleUrl: './create-admin-subcategories.component.css',
+    standalone: false
 })
 export class CreateAdminSubcategoriesComponent {
   subcategories: SubcategoriesForm[] = [

@@ -17,9 +17,10 @@ import { AlertService, LogStatus } from '@core/services/alert/alert.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'mi-create-product',
-  templateUrl: './create-product.component.html',
-  styleUrl: './create-product.component.css'
+    selector: 'mi-create-product',
+    templateUrl: './create-product.component.html',
+    styleUrl: './create-product.component.css',
+    standalone: false
 })
 export class CreateProductComponent implements OnInit {
 

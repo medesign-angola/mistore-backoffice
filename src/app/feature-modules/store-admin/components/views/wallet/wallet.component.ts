@@ -14,9 +14,10 @@ import { SVGRefEnum } from '@shared/Enums/svg-ref.enum';
 import { WidgetPercentageStatusEnum } from '@shared/Enums/widget-percentage-status.enum';
 
 @Component({
-  selector: 'mi-wallet',
-  templateUrl: './wallet.component.html',
-  styleUrl: './wallet.component.css'
+    selector: 'mi-wallet',
+    templateUrl: './wallet.component.html',
+    styleUrl: './wallet.component.css',
+    standalone: false
 })
 export class WalletComponent extends TableComponentExtender implements OnInit, TableComponentInterface {
 

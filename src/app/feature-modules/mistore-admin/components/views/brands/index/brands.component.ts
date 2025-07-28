@@ -9,9 +9,10 @@ import { HorizontalBarChart } from '@shared/interfaces/hz-bar-chart.interface';
 import { IWidget } from '@shared/interfaces/widget.interface';
 
 @Component({
-  selector: 'mi-brands',
-  templateUrl: './brands.component.html',
-  styleUrl: './brands.component.css'
+    selector: 'mi-brands',
+    templateUrl: './brands.component.html',
+    styleUrl: './brands.component.css',
+    standalone: false
 })
 export class BrandsIndexComponent extends TableComponentExtender {
   

@@ -8,9 +8,10 @@ import { WidgetPercentageStatusEnum } from '@shared/Enums/widget-percentage-stat
 import { IWidget } from '@shared/interfaces/widget.interface';
 
 @Component({
-  selector: 'mi-advertisements',
-  templateUrl: './advertisements.component.html',
-  styleUrl: './advertisements.component.css'
+    selector: 'mi-advertisements',
+    templateUrl: './advertisements.component.html',
+    styleUrl: './advertisements.component.css',
+    standalone: false
 })
 export class AdvertisementsComponent extends TableComponentExtender {
   

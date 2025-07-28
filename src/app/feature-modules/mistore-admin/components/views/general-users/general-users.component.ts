@@ -9,9 +9,10 @@ import { HorizontalBarChart } from '@shared/interfaces/hz-bar-chart.interface';
 import { IWidget } from '@shared/interfaces/widget.interface';
 
 @Component({
-  selector: 'mi-general-users',
-  templateUrl: './general-users.component.html',
-  styleUrl: './general-users.component.css'
+    selector: 'mi-general-users',
+    templateUrl: './general-users.component.html',
+    styleUrl: './general-users.component.css',
+    standalone: false
 })
 export class GeneralUsersComponent extends TableComponentExtender {
   

@@ -6,9 +6,10 @@ import { VerticalBarChart } from '@shared/interfaces/vt-bar-chart.interface';
 import { IWidget } from '@shared/interfaces/widget.interface';
 
 @Component({
-  selector: 'mi-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+    selector: 'mi-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.css',
+    standalone: false
 })
 export class DashboardComponent {
   widgetPercentageStatusEnum = WidgetPercentageStatusEnum;

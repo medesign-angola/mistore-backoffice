@@ -4,9 +4,10 @@ import { LOOKS_LIMT } from '@shared/constants/data-limit.const';
 import { ILook } from '@store/models/looks.model';
 
 @Component({
-  selector: 'mi-look-wrapper',
-  templateUrl: './wrapper.component.html',
-  styleUrl: './wrapper.component.css'
+    selector: 'mi-look-wrapper',
+    templateUrl: './wrapper.component.html',
+    styleUrl: './wrapper.component.css',
+    standalone: false
 })
 export class WrapperComponent implements OnChanges {
   @Input({ required: true }) title!: string;

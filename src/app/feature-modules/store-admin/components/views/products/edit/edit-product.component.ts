@@ -15,9 +15,10 @@ import { IProductSubCategory, IProductSize, IProduct, IProductColor, FilenameIma
 import { combineLatest, map } from 'rxjs';
 
 @Component({
-  selector: 'mi-edit-product',
-  templateUrl: './edit-product.component.html',
-  styleUrl: './edit-product.component.css'
+    selector: 'mi-edit-product',
+    templateUrl: './edit-product.component.html',
+    styleUrl: './edit-product.component.css',
+    standalone: false
 })
 export class EditProductComponent implements OnInit {
 

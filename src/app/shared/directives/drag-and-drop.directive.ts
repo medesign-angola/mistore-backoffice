@@ -6,7 +6,8 @@ enum DragDropBG{
 }
 
 @Directive({
-  selector: '[appDragAndDrop]'
+    selector: '[appDragAndDrop]',
+    standalone: false
 })
 export class DragAndDropDirective {
 

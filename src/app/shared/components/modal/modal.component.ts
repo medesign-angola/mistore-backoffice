@@ -3,9 +3,10 @@ import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, PLAT
 import { ModalSupporter } from '@core/class/modal-supporter.class';
 
 @Component({
-  selector: 'mi-modal',
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.css'
+    selector: 'mi-modal',
+    templateUrl: './modal.component.html',
+    styleUrl: './modal.component.css',
+    standalone: false
 })
 export class ModalComponent extends ModalSupporter implements OnInit, OnChanges {
   @Input() showModalFromParent: boolean = false;

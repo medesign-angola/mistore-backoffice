@@ -14,9 +14,10 @@ import { ProductFacade } from '@store/facades/products/products.facade';
 import { IProduct, IProductResponse } from '@store/models/product.model';
 
 @Component({
-  selector: 'mi-favorites',
-  templateUrl: './favorites.component.html',
-  styleUrl: './favorites.component.css'
+    selector: 'mi-favorites',
+    templateUrl: './favorites.component.html',
+    styleUrl: './favorites.component.css',
+    standalone: false
 })
 export class FavoritesComponent extends TableComponentExtender implements OnInit, TableComponentInterface {
   

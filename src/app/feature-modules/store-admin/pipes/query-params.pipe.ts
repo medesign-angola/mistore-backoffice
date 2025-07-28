@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Params } from '@angular/router';
 
 @Pipe({
-  name: 'queryParams'
+    name: 'queryParams',
+    standalone: false
 })
 export class QueryParamsPipe implements PipeTransform {
 

@@ -6,9 +6,10 @@ import { ISidebar } from '@shared/interfaces/sidebar.interface';
 import { filter } from 'rxjs';
 
 @Component({
-  selector: 'app-mistore-admin',
-  templateUrl: './mistore-admin.component.html',
-  styleUrl: './mistore-admin.component.css'
+    selector: 'app-mistore-admin',
+    templateUrl: './mistore-admin.component.html',
+    styleUrl: './mistore-admin.component.css',
+    standalone: false
 })
 export class MistoreAdminComponent extends SidebarExtender implements OnInit, AfterViewInit {
   

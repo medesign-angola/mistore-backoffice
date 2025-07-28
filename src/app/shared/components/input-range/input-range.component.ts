@@ -2,8 +2,8 @@ import { AfterViewInit, Component, ElementRef, forwardRef, ViewChild } from '@an
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'mi-input-range',
-  template: `
+    selector: 'mi-input-range',
+    template: `
     <div class="slider-container" #container (click)="onSliderClick($event)">
       <div
         class="slider-thumb"
@@ -14,14 +14,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       ></div>
     </div>
   `,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputRangeComponent),
-      multi: true
-    }
-  ],
-  styles: `
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => InputRangeComponent),
+            multi: true
+        }
+    ],
+    styles: `
     .slider-container {
       width: 100%;
       height: 6px;
@@ -40,7 +40,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       transform: translate(-50%, -50%);
       cursor: pointer;
     }
-  `
+  `,
+    standalone: false
 })
 export class InputRangeComponent implements ControlValueAccessor, AfterViewInit {
   @ViewChild('container') containerRef!: ElementRef<HTMLDivElement>;

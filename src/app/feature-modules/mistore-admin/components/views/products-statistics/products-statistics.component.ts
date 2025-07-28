@@ -4,9 +4,10 @@ import { WidgetPercentageStatusEnum } from '@shared/Enums/widget-percentage-stat
 import { IWidget } from '@shared/interfaces/widget.interface';
 
 @Component({
-  selector: 'mi-products-statistics',
-  templateUrl: './products-statistics.component.html',
-  styleUrl: './products-statistics.component.css'
+    selector: 'mi-products-statistics',
+    templateUrl: './products-statistics.component.html',
+    styleUrl: './products-statistics.component.css',
+    standalone: false
 })
 export class ProductsStatisticsComponent {
   widgetPercentageStatusEnum = WidgetPercentageStatusEnum;

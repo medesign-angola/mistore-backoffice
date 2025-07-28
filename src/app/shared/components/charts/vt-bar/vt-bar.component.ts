@@ -2,9 +2,10 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { VerticalBarChart } from '@shared/interfaces/vt-bar-chart.interface';
 
 @Component({
-  selector: 'vt-bar',
-  templateUrl: './vt-bar.component.html',
-  styleUrl: './vt-bar.component.css'
+    selector: 'vt-bar',
+    templateUrl: './vt-bar.component.html',
+    styleUrl: './vt-bar.component.css',
+    standalone: false
 })
 export class VtBarComponent implements OnInit, OnChanges {
 

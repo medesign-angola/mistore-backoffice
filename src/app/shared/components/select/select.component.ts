@@ -1,9 +1,10 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, input } from '@angular/core';
 
 @Component({
-  selector: 'mi-select',
-  templateUrl: './select.component.html',
-  styleUrl: './select.component.css'
+    selector: 'mi-select',
+    templateUrl: './select.component.html',
+    styleUrl: './select.component.css',
+    standalone: false
 })
 export class SelectComponent implements OnInit, OnChanges, AfterViewInit {
 

@@ -6,9 +6,10 @@ import { ISidebar } from '@shared/interfaces/sidebar.interface';
 import { filter } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-store-admin',
-  templateUrl: './store-admin.component.html',
-  styleUrl: './store-admin.component.css'
+    selector: 'app-store-admin',
+    templateUrl: './store-admin.component.html',
+    styleUrl: './store-admin.component.css',
+    standalone: false
 })
 export class StoreAdminComponent extends SidebarExtender implements OnInit, AfterViewInit {
   

@@ -5,9 +5,10 @@ import { LookStatus } from '@store/enums/look-status.enum';
 import { ILook } from '@store/models/looks.model';
 
 @Component({
-  selector: 'mi-look',
-  templateUrl: './look.component.html',
-  styleUrl: './look.component.css'
+    selector: 'mi-look',
+    templateUrl: './look.component.html',
+    styleUrl: './look.component.css',
+    standalone: false
 })
 export class LookComponent implements OnInit, OnChanges {
   @Input({ required: true }) look!: ILook;

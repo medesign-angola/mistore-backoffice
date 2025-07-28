@@ -16,9 +16,10 @@ import { IProduct, IProductResponse } from '@store/models/product.model';
 import { combineLatest, switchMap, map, of } from 'rxjs';
 
 @Component({
-  selector: 'mi-edit-look-draft',
-  templateUrl: './edit-look-draft.component.html',
-  styleUrl: './edit-look-draft.component.css'
+    selector: 'mi-edit-look-draft',
+    templateUrl: './edit-look-draft.component.html',
+    styleUrl: './edit-look-draft.component.css',
+    standalone: false
 })
 export class EditLookDraftComponent extends TableComponentExtender implements OnInit, AfterViewInit {
   

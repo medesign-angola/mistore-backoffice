@@ -8,9 +8,10 @@ import { WidgetPercentageStatusEnum } from '@shared/Enums/widget-percentage-stat
 import { IWidget } from '@shared/interfaces/widget.interface';
 
 @Component({
-  selector: 'mi-admin-categories',
-  templateUrl: './admin-categories.component.html',
-  styleUrl: './admin-categories.component.css'
+    selector: 'mi-admin-categories',
+    templateUrl: './admin-categories.component.html',
+    styleUrl: './admin-categories.component.css',
+    standalone: false
 })
 export class AdminCategoriesComponent extends TableComponentExtender {
   

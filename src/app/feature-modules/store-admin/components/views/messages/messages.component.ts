@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'mi-messages',
-  templateUrl: './messages.component.html',
-  styleUrl: './messages.component.css'
+    selector: 'mi-messages',
+    templateUrl: './messages.component.html',
+    styleUrl: './messages.component.css',
+    standalone: false
 })
 export class MessagesComponent implements OnInit, AfterViewInit {
   @ViewChild('messagesContainer') messagesContainer!: ElementRef<HTMLElement>;

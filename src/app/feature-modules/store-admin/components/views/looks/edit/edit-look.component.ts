@@ -16,9 +16,10 @@ import { IProduct, IProductResponse } from '@store/models/product.model';
 import { catchError, combineLatest, map, of, switchMap, tap, throwError } from 'rxjs';
 
 @Component({
-  selector: 'mi-edit-look',
-  templateUrl: './edit-look.component.html',
-  styleUrl: './edit-look.component.css'
+    selector: 'mi-edit-look',
+    templateUrl: './edit-look.component.html',
+    styleUrl: './edit-look.component.css',
+    standalone: false
 })
 export class EditLookComponent extends TableComponentExtender implements OnInit, AfterViewInit {
   

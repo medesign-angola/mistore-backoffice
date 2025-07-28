@@ -14,9 +14,10 @@ import { ProductFacade } from '@store/facades/products/products.facade';
 import { IProduct } from '@store/models/product.model';
 
 @Component({
-  selector: 'mi-promotions',
-  templateUrl: './promotions.component.html',
-  styleUrl: './promotions.component.css'
+    selector: 'mi-promotions',
+    templateUrl: './promotions.component.html',
+    styleUrl: './promotions.component.css',
+    standalone: false
 })
 export class PromotionsComponent extends TableComponentExtender implements OnInit, TableComponentInterface {
   

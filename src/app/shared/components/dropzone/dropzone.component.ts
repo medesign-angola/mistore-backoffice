@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DropzoneFunctionalities } from '@shared/component-classes/dropzone-functionalities.class';
 
 @Component({
-  selector: 'mi-dropzone',
-  templateUrl: './dropzone.component.html',
-  styleUrl: './dropzone.component.css'
+    selector: 'mi-dropzone',
+    templateUrl: './dropzone.component.html',
+    styleUrl: './dropzone.component.css',
+    standalone: false
 })
 export class DropzoneComponent extends DropzoneFunctionalities {
   @Input({ required: true }) name: string = '';

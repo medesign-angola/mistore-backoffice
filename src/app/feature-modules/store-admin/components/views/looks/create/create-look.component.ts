@@ -8,9 +8,10 @@ import { LookFacade } from '@store/facades/looks/look.facade';
 import { AlertService, LogStatus } from '@core/services/alert/alert.service';
 
 @Component({
-  selector: 'mi-create-look',
-  templateUrl: './create-look.component.html',
-  styleUrl: './create-look.component.css'
+    selector: 'mi-create-look',
+    templateUrl: './create-look.component.html',
+    styleUrl: './create-look.component.css',
+    standalone: false
 })
 export class CreateLookComponent implements OnInit {
 

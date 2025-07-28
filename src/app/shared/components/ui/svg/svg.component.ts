@@ -2,8 +2,9 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { SVGRefEnum } from '@shared/Enums/svg-ref.enum';
 
 @Component({
-  selector: 'mi-svg',
-  templateUrl: './svg.component.html',
+    selector: 'mi-svg',
+    templateUrl: './svg.component.html',
+    standalone: false
 })
 export class SvgComponent implements OnInit, OnChanges {
   

@@ -2,9 +2,10 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@ang
 import { User } from '@core/base-models/user/User';
 
 @Component({
-  selector: 'mi-header',
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+    selector: 'mi-header',
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.css',
+    standalone: false
 })
 export class HeaderComponent implements OnInit, OnChanges {
 
