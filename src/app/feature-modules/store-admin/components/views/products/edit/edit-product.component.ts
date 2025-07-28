@@ -117,9 +117,9 @@ export class EditProductComponent implements OnInit {
 
     this.editProductFormGroup = new FormGroup({
       'productName': new FormControl('', [ Validators.required ]),
-      'price': new FormControl('', [Validators.required, Validators.min(0)]),
-      'qtd': new FormControl('', [Validators.required, Validators.min(0)]),
-      'promotionRate': new FormControl('', [Validators.required, Validators.min(0)]),
+      'price': new FormControl(0, [Validators.required, Validators.min(0)]),
+      'qtd': new FormControl(0, [Validators.required, Validators.min(0)]),
+      'promotionRate': new FormControl(0, [Validators.required, Validators.min(0)]),
       'description': new FormControl('', [Validators.required])
     })
 
@@ -231,10 +231,13 @@ export class EditProductComponent implements OnInit {
   }
 
   fullfillFormFields(){
+
+    const percentage = 100 - ((this.theProduct.promotion_price / this.theProduct.price) * 100);
+
     this.editProductFormGroup.get('productName')?.setValue(this.theProduct.name)
     this.editProductFormGroup.get('price')?.setValue(this.theProduct.price)
     this.editProductFormGroup.get('qtd')?.setValue(this.theProduct.quantity)
-    this.editProductFormGroup.get('promotionRate')?.setValue(this.theProduct.promotion_price)
+    this.editProductFormGroup.get('promotionRate')?.setValue(percentage)
     this.editProductFormGroup.get('description')?.setValue(this.theProduct.description)
     
     if(this.theProduct.status && this.theProduct.status.length > 0){
@@ -243,6 +246,12 @@ export class EditProductComponent implements OnInit {
   }
 
   submitForm(): void{
+
+     if(this.editProductFormGroup.invalid){
+      this.alertService.add("Verifique se os campos todos são válidos.", LogStatus.ERROR);
+      return;
+    }
+    
     // after validation
 
     // if(this.theProduct.imagePath !== ''){

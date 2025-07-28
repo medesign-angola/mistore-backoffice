@@ -241,6 +241,9 @@
                             <div class="price input flex flex-col gap-y-3">
                                 <label for="price" class="text-xs font-medium">Preço</label>
                                 <input type="text"
+                                [ngClass]="{
+                                    'is-invalid': this.addProductFormGroup.get('price')?.invalid && this.addProductFormGroup.get('price')?.touched
+                                }"
                                 class="placeholder:text-xs text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
                                 formControlName="price" placeholder="{{ 5000 | number | replaceBy }}" id="price">
                             </div>
@@ -248,6 +251,9 @@
                             <div class="qtd input flex flex-col gap-y-3">
                                 <label for="qtd" class="text-xs font-medium">Qtd de produtos em stock</label>
                                 <input type="text"
+                                [ngClass]="{
+                                    'is-invalid': this.addProductFormGroup.get('qtd')?.invalid && this.addProductFormGroup.get('qtd')?.touched
+                                }"
                                 class="placeholder:text-xs text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
                                 formControlName="qtd" placeholder="20" id="qtd">
                             </div>
@@ -304,7 +310,11 @@
 
                             <div class="description input flex flex-col gap-y-3">
                                 <label for="description" class="text-xs font-medium">Descrição</label>
-                                <textarea rows="5" class="placeholder:text-xs resize-none text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
+                                <textarea
+                                [ngClass]="{
+                                    'is-invalid': this.addProductFormGroup.get('description')?.invalid && this.addProductFormGroup.get('description')?.touched
+                                }"
+                                rows="5" class="placeholder:text-xs resize-none text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
                                 formControlName="description" id="description"></textarea>
                             </div>
 

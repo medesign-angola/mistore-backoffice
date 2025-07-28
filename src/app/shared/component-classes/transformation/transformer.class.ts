@@ -71,7 +71,7 @@ export class Transformer{
                 favoritesCount: product.favourite_count,
                 created_at: created_at,
                 price: product.price,
-                promotion_price: 0,
+                promotion_price: (product.discount_status ?? []).flatMap((discounted_item: any) => discounted_item.discount_price),
                 money_raised: product.money_raised,
                 colors: productColors,
                 sizes: (product.product_Size ?? []).flatMap((item: any) => ({

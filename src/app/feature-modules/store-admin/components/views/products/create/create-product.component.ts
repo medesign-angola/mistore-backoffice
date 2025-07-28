@@ -101,9 +101,9 @@ export class CreateProductComponent implements OnInit {
 
     this.addProductFormGroup = new FormGroup({
       'productName': new FormControl('', [ Validators.required ]),
-      'price': new FormControl('', [Validators.required, Validators.min(0)]),
-      'qtd': new FormControl('', [Validators.required, Validators.min(0)]),
-      'promotionRate': new FormControl('', [Validators.required, Validators.min(0)]),
+      'price': new FormControl(0, [Validators.required, Validators.min(0)]),
+      'qtd': new FormControl(0, [Validators.required, Validators.min(0)]),
+      'promotionRate': new FormControl(0, [Validators.required, Validators.min(0)]),
       'description': new FormControl('', [Validators.required])
     })
 
@@ -186,6 +186,11 @@ export class CreateProductComponent implements OnInit {
   }
 
   submitForm(): void{
+
+    if(this.addProductFormGroup.invalid){
+      this.alertService.add("Verifique se os campos todos são válidos.", LogStatus.ERROR);
+      return;
+    }
 
     if(!(this.files.length > 0)){
       this.alertService.add("Seleccione as imagens deste produto", LogStatus.WARNING);

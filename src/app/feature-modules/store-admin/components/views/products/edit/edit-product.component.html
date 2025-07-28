@@ -35,12 +35,7 @@
                 <div class="row flex gap-6 justify-start items-stretch">
                     <div class="col max-w-[50%] w-full py-4 px-6 border outline-offset-[10px] bg-white border-[#E9E9E9] rounded-lg">
                         <div class="upload-section">
-                            <div class="title mb-5">
-                                <h5 class="text-xs font-medium">
-                                    Adicionar imagem
-                                </h5>
-                            </div>
-                            
+
                             @if (this.theProduct && this.theProductImages.length > 0) {
                                 <div class="title mb-5">
                                     <h5 class="text-xs font-medium">
@@ -55,6 +50,11 @@
                                 </div>
                             }
 
+                            <div class="title mb-5">
+                                <h5 class="text-xs font-medium">
+                                    Adicionar imagem
+                                </h5>
+                            </div>
                             <div class="dropzone">
                                 <mi-dropzone
                                 [showDimentionsText]="false"
@@ -262,6 +262,9 @@
                             <div class="price input flex flex-col gap-y-3">
                                 <label for="price" class="text-xs font-medium">Preço</label>
                                 <input type="text"
+                                [ngClass]="{
+                                    'is-invalid': this.editProductFormGroup.get('price')?.invalid && this.editProductFormGroup.get('price')?.touched
+                                }"
                                 class="placeholder:text-xs text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
                                 formControlName="price" placeholder="{{ 5000 | number | replaceBy }}" id="price">
                             </div>
@@ -269,6 +272,9 @@
                             <div class="qtd input flex flex-col gap-y-3">
                                 <label for="qtd" class="text-xs font-medium">Qtd de produtos em stock</label>
                                 <input type="text"
+                                [ngClass]="{
+                                    'is-invalid': this.editProductFormGroup.get('qtd')?.invalid && this.editProductFormGroup.get('qtd')?.touched
+                                }"
                                 class="placeholder:text-xs text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
                                 formControlName="qtd" placeholder="20" id="qtd">
                             </div>
@@ -325,7 +331,11 @@
                             </div>
 
                             <div class="description input flex flex-col gap-y-3">
-                                <label for="description" class="text-xs font-medium">Descrição</label>
+                                <label
+                                [ngClass]="{
+                                    'is-invalid': this.editProductFormGroup.get('description')?.invalid && this.editProductFormGroup.get('description')?.touched
+                                }"
+                                for="description" class="text-xs font-medium">Descrição</label>
                                 <textarea rows="5" class="placeholder:text-xs resize-none text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
                                 formControlName="description" id="description"></textarea>
                             </div>
