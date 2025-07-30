@@ -28,7 +28,7 @@ import { FormControl } from '@angular/forms';
 })
 export class OtpInputComponent {
   length = input.required<number>();
-  onComplete = output<string>();
+  code = output<string>();
 
   controls = linkedSignal(() => Array(this.length()).fill(null).map(() => new FormControl('')));
   inputs = viewChildren<ElementRef>('input');
@@ -63,9 +63,9 @@ export class OtpInputComponent {
 
     const isComplete = this.controls().every((control: FormControl) => control.value.length === 1);
     const opt = this.controls().map((control: FormControl) => control.value).join('');
-    if(opt.length === this.length() && isComplete){
-      this.onComplete.emit(opt);
-    }
+    // if(opt.length === this.length() && isComplete){
+      this.code.emit(opt);
+    // }
 
   }
 
