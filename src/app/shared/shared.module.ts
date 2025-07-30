@@ -24,6 +24,8 @@ import { LookComponent } from './components/cards/look/look.component';
 import { HorizontalGalleryComponent } from './components/horizontal-gallery/horizontal-gallery.component';
 import { InputRangeComponent } from './components/input-range/input-range.component';
 import { ProductsTableComponent } from './components/products/products-table/products-table.component';
+import { OtpInputComponent } from './components/otp-input/otp-input.component';
+import { TailwindClassesDirective } from './components/otp-input/tailwind-classes.directive';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { ProductsTableComponent } from './components/products/products-table/pro
     HorizontalGalleryComponent,
     InputRangeComponent,
     ProductsTableComponent,
+    OtpInputComponent,
+    TailwindClassesDirective,
   ],
   imports: [
     CommonModule,
@@ -82,7 +86,8 @@ import { ProductsTableComponent } from './components/products/products-table/pro
     SpinnerComponent,
     InputRangeComponent,
     LookComponent,
-    HorizontalGalleryComponent
+    HorizontalGalleryComponent,
+    OtpInputComponent
   ],
 })
 export class SharedModule { }
