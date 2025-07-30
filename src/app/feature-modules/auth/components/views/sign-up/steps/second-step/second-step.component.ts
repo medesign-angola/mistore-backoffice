@@ -34,10 +34,10 @@ import { Component } from '@angular/core';
 
                 <div class="agreement">
                     <div
-                    class="chip cursor-pointer w-fit text-black/[0.6] rounded-full text-xs font-medium flex gap-4 items-start"
+                    class="chip cursor-pointer w-fit text-black/60 rounded-full text-xs font-medium flex gap-4 items-start"
                     (click)="changeAgreementStatus()"
                     >
-                        <div class="check w-5 h-5 duration-[.6s] border-[2px] rounded-[5px]  border-[#E9E9E9] flex justify-center items-center"
+                        <div class="check w-5 h-5 duration-[.6s] border-2 rounded-[5px]  border-[#E9E9E9] flex justify-center items-center"
                         [ngClass]="{
                             'bg-black': userAgree
                         }"

@@ -9,7 +9,7 @@
                         [checked]="this.select"
                         (click)="toggleLookSelection(!this.select, look)"
                         >
-                        <span class="checkmark !w-5 !h-5"></span>
+                        <span class="checkmark w-5! h-5!"></span>
                     </label>
                 </div>
             </div>
@@ -33,7 +33,7 @@
         <div class="products-rounded relative flex gap-6 justify-between items-center">
             <div class="images flex justify-start items-center">
                 @for (product of look.products; track $index) {
-                    <div class="product-image w-8 h-8 relative rounded-full border-[1px] border-white overflow-hidden"
+                    <div class="product-image w-8 h-8 relative rounded-full border border-white overflow-hidden"
                     [style.zIndex]="look.products.length - $index"
                     [ngClass]="{
                         '-ml-5': $index > 0

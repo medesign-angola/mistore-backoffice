@@ -5,7 +5,7 @@ import { AfterViewInit, Directive, ElementRef, input, Renderer2 } from '@angular
   standalone: false
 })
 export class TailwindClassesDirective implements  AfterViewInit {
-  tailwindClasses = input<string[]>(['text-center', 'w-10', 'h-10', 'text-base', 'bg-[#F8F8F8]', 'border-[1px]', 'border-[#E9E9E9]', 'rounded-lg']);
+  tailwindClasses = input<string[]>(['text-center', 'w-10', 'h-10', 'text-base', 'bg-[#F8F8F8]', 'border', 'border-[#E9E9E9]', 'rounded-lg']);
 
   constructor(private element: ElementRef, private renderer2: Renderer2) { }
   

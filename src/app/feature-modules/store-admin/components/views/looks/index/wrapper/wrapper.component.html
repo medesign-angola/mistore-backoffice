@@ -70,10 +70,10 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="image !w-full !h-[180px] placeholder !relative"></div>
+                            <div class="image w-full! h-[180px]! placeholder relative!"></div>
                         </div>
                         <div class="box-content mt-3 flex flex-col gap-y-5 justify-between">
-                            <div class="look-details placeholder !relative !w-fit">
+                            <div class="look-details placeholder relative! w-fit!">
                                 <p class="text-transparent tracking-[0.1px] leading-6 limited-text two-lines">
                                     Placeholder description
                                 </p>
@@ -81,7 +81,7 @@
                             <div class="products-rounded relative flex gap-6 justify-between items-center">
                                 <div class="images flex justify-start items-center">
                                     @for (product of [0, 0, 0, 0]; track $index) {
-                                        <div class="product-image !w-8 !h-8 placeholder !relative rounded-full border-[1px] border-white overflow-hidden"
+                                        <div class="product-image w-8! h-8! placeholder relative! rounded-full border border-white overflow-hidden"
                                         [style.zIndex]="[0, 0, 0, 0, 0, 0, 0, 0].length - $index"
                                         [ngClass]="{
                                             '-ml-5': $index > 0
@@ -91,7 +91,7 @@
                                         </div>
                                     }
                                 </div>
-                                <div class="selected-count placeholder !relative !w-fit">
+                                <div class="selected-count placeholder relative! w-fit!">
                                     <p class="text-[#999] text-sm text-transparent limited-text one-line">
                                         Placeholder apenas
                                     </p>
@@ -99,12 +99,12 @@
                             </div>
                             <div class="actions flex justify-between items-center">
                                 <div class="edit">
-                                    <button class="px-1 py-3 text-sm placeholder !relative text-transparent rounded-lg">
+                                    <button class="px-1 py-3 text-sm placeholder relative! text-transparent rounded-lg">
                                         Placeholder
                                     </button>
                                 </div>
                                 <div class="dynamic-action">
-                                    <button class="px-4 py-3 text-sm placeholder !relative text-transparent rounded-lg">
+                                    <button class="px-4 py-3 text-sm placeholder relative! text-transparent rounded-lg">
                                         placeholder
                                     </button>
                                 </div>

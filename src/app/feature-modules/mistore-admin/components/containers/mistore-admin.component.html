@@ -1,5 +1,5 @@
 <div class="app-container flex justify-start items-stretch">
-    <aside class="sticky top-0 w-full text-white h-[1000px] max-h-screen max-w-[18.5rem] bg-black" #sidebarElement>
+    <aside class="sticky top-0 w-full text-white h-[1000px] max-h-screen max-w-74 bg-black" #sidebarElement>
         <div class="nav wrapper">
             <sidebar-menu
             [sidebarMenuItems]="this.sidebarMenuItems"
@@ -7,7 +7,7 @@
         </div>
     </aside>
     <section class="w-full" #bodyContainer>
-        <header class="w-full sticky top-0 wrapper z-[100] bg-white border-b border-[#E9E9E9]">
+        <header class="w-full sticky top-0 wrapper z-100 bg-white border-b border-[#E9E9E9]">
             <mi-header
             [appearGreetings]="false"
             />

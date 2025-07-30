@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <div class="chart-bars relative w-full"> <!-- max-w-[45.375rem] max-h-[300px] -->
+            <div class="chart-bars relative w-full"> <!-- max-w-181.5 max-h-[300px] -->
                 <div class="underlined-cover w-full h-full flex flex-row gap-y-6 justify-between">
                     @for (item of this.xAxisIntervals; track $index) {
                         <div class="item relative text-sm text-transparent">
@@ -56,7 +56,7 @@
                                         [style.backgroundColor]="serie.color"
                                         [style.width.%]="getPercentage(this.chartData.series[serieIndex].data[labelIndex])"
                                         >
-                                            <div class="toolpit text-sm absolute z-[10] w-max min-w-[150px] -top-[70px] left-[50%] -translate-x-[50%] bg-black text-white p-2 rounded">
+                                            <div class="toolpit text-sm absolute z-10 w-max min-w-[150px] -top-[70px] left-[50%] -translate-x-[50%] bg-black text-white p-2 rounded">
                                                 <div class="top mb-2">
                                                     {{ this.chartData.labels[labelIndex] }}
                                                 </div>

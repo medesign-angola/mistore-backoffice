@@ -27,7 +27,7 @@
             }
         </div>
     </div>
-    <div class="chart-canvas relative mt-8 max-h-[17rem] flex justify-start gap-4 items-start">
+    <div class="chart-canvas relative mt-8 max-h-68 flex justify-start gap-4 items-start">
 
 
         <div class="y-axys">
@@ -36,7 +36,7 @@
                     <div class="item text-sm text-[#aaa]"
                     >
                     <!-- [ngClass]="(item === '0') ? 'opacity-0' : 'opacity-1'" -->
-                        <span class="!text-xs !text-[rgba(170,170,170,0.40)]">
+                        <span class="text-xs! text-[rgba(170,170,170,0.40)]!">
                             {{ this.chartData.details?.chartUnity }}
                         </span>
                         {{ item }}
@@ -49,7 +49,7 @@
                 @for (item of this.yAxisIntervals; track $index) {
                     <div class="item relative text-sm text-transparent">
                         {{ item }}
-                        <div class="dash absolute top-[50%] -translate-y-[50%] left-0 w-full h-[1px] border-b"
+                        <div class="dash absolute top-[50%] -translate-y-[50%] left-0 w-full h-px border-b"
                         [ngClass]="(item === '0') ? 'border-[#D9D9D9]' : 'border-dashed border-[rgba(204,204,204,0.40)]'"
                         ></div>
                     </div>
@@ -74,7 +74,7 @@
                                     [style.height.%]="getPercentage(this.chartData.series[serieIndex].data[labelIndex])"
                                     >
                                         @if(this.chartData.details?.toolpit){
-                                            <div class="toolpit text-sm absolute z-[10] w-max min-w-[150px] -top-[70px] left-[50%] -translate-x-[50%] bg-black text-white p-2 rounded">
+                                            <div class="toolpit text-sm absolute z-10 w-max min-w-[150px] -top-[70px] left-[50%] -translate-x-[50%] bg-black text-white p-2 rounded">
                                                 <div class="top mb-2">
                                                     {{ this.chartData.labels[labelIndex] }}
                                                 </div>

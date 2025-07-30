@@ -33,7 +33,7 @@
             </div>
             <div class="content relative py-8 px-6">
                 <div class="row flex gap-6 justify-start items-stretch">
-                    <div class="col max-w-[50%] w-full py-4 px-6 border outline-offset-[10px] bg-white border-[#E9E9E9] rounded-lg">
+                    <div class="col max-w-[50%] w-full py-4 px-6 border outline-offset-10 bg-white border-[#E9E9E9] rounded-lg">
                         <div class="upload-section">
 
                             @if (this.theProduct && this.theProductImages.length > 0) {
@@ -84,7 +84,7 @@
                                         <div class="files flex flex-col gap-y-6" *ngIf="this.colorsWithImages[color.id] && this.colorsWithImages[color.id].length > 0">                                
                                             @for (file of this.colorsWithImages[color.id]; track $index) {
                                                 <div class="file p-3 bg-[#f8f8f8] border border-[#e9e9e9] rounded-lg flex gap-x-2 justify-start items-stretch">
-                                                    <div class="image-preview !relative !w-14 !h-12 rounded overflow-hidden"
+                                                    <div class="image-preview relative! w-14! h-12! rounded overflow-hidden"
                                                     [ngClass]="{
                                                         'placeholder': !file.hasLoaded
                                                     }"
@@ -155,8 +155,8 @@
                                 @if (this.loaderService.getLoadingStatus(this.pageLoaderIdentifier.BRANDS_ADD_PRODUCTS) | async) {
 
                                     <div class="input flex flex-col gap-y-3">
-                                        <label class="text-xs text-transparent placeholder !relative !w-fit !h-full rounded-lg font-medium">{{ this.pageLoaderIdentifier.CATEGORIES_ADD_PRODUCTS }}</label>
-                                        <div class="p-[14px] text-xs text-transparent placeholder !relative !w-full !h-full bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg">placeholder</div>
+                                        <label class="text-xs text-transparent placeholder relative! w-fit! h-full! rounded-lg font-medium">{{ this.pageLoaderIdentifier.CATEGORIES_ADD_PRODUCTS }}</label>
+                                        <div class="p-[14px] text-xs text-transparent placeholder relative! w-full! h-full! bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg">placeholder</div>
                                     </div>
 
                                 } @else {
@@ -178,8 +178,8 @@
                                 @if (this.loaderService.getLoadingStatus(this.pageLoaderIdentifier.CATEGORIES_ADD_PRODUCTS) | async) {
 
                                     <div class="input flex flex-col gap-y-3">
-                                        <label class="text-xs text-transparent placeholder !relative !w-fit !h-full rounded-lg font-medium">{{ this.pageLoaderIdentifier.CATEGORIES_ADD_PRODUCTS }}</label>
-                                        <div class="p-[14px] text-xs text-transparent placeholder !relative !w-full !h-full bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg">placeholder</div>
+                                        <label class="text-xs text-transparent placeholder relative! w-fit! h-full! rounded-lg font-medium">{{ this.pageLoaderIdentifier.CATEGORIES_ADD_PRODUCTS }}</label>
+                                        <div class="p-[14px] text-xs text-transparent placeholder relative! w-full! h-full! bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg">placeholder</div>
                                     </div>
 
                                 } @else {
@@ -200,8 +200,8 @@
                                 @if (this.loaderService.getLoadingStatus(this.pageLoaderIdentifier.SUB_CATEGORIES_ADD_PRODUCTS) | async) {
 
                                     <div class="input flex flex-col gap-y-3">
-                                        <label class="text-xs text-transparent placeholder !relative !w-fit !h-full rounded-lg font-medium">{{ this.pageLoaderIdentifier.CATEGORIES_ADD_PRODUCTS }}</label>
-                                        <div class="p-[14px] text-xs text-transparent placeholder !relative !w-full !h-full bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg">placeholder</div>
+                                        <label class="text-xs text-transparent placeholder relative! w-fit! h-full! rounded-lg font-medium">{{ this.pageLoaderIdentifier.CATEGORIES_ADD_PRODUCTS }}</label>
+                                        <div class="p-[14px] text-xs text-transparent placeholder relative! w-full! h-full! bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg">placeholder</div>
                                     </div>
 
                                 } @else {
@@ -241,7 +241,7 @@
                                         <div class="color flex gap-x-2 justify-start cursor-pointer items-center"
                                         (click)="toggleSelectColor(color.id)"
                                         >
-                                            <div class="colored-circle rounded-full duration-[.2s] relative w-[24px] h-[24px] border-[2px] border-red-400"
+                                            <div class="colored-circle rounded-full duration-[.2s] relative w-[24px] h-[24px] border-2 border-red-400"
                                             [style.borderColor]="(color.selected) ? color.hexCode : 'white'"
                                             >
                                                 <div class="circle-center rounded-full w-[18px] h-[18px] absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] flex justify-center items-center"
@@ -296,7 +296,7 @@
                                     class="chip cursor-pointer w-fit bg-[rgba(39,206,153,0.10)] rounded-full px-3 py-2 text-[#288853] text-sm font-medium uppercase flex gap-2 items-center"
                                     (click)="changeAvailability(true)"
                                     >
-                                        <div class="check w-5 h-5 duration-[.6s] border-[2px] rounded-[5px]  border-[#288853] flex justify-center items-center"
+                                        <div class="check w-5 h-5 duration-[.6s] border-2 rounded-[5px]  border-[#288853] flex justify-center items-center"
                                         [ngClass]="{
                                             'bg-[#288853]': isAvailable
                                         }"
@@ -313,7 +313,7 @@
                                     class="chip cursor-pointer w-fit bg-[rgba(225,48,41,0.10)] rounded-full px-3 py-2 text-[#E13029] text-sm font-medium uppercase flex gap-2 items-center"
                                     (click)="changeAvailability(false)"
                                     >
-                                        <div class="check w-5 h-5 border-[2px] rounded-[5px] border-[#E13029] flex justify-center items-center"
+                                        <div class="check w-5 h-5 border-2 rounded-[5px] border-[#E13029] flex justify-center items-center"
                                         [ngClass]="{
                                             'bg-[#E13029]': !isAvailable
                                         }"

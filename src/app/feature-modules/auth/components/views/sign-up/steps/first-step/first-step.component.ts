@@ -14,7 +14,7 @@ import { AlertService } from '@core/services/alert/alert.service';
                 </div>
             </div>
             <div class="submit">
-                <button type="submit" [disabled]="this.code().length < 6" class="min-w-[150px] disabled:!bg-red-400/30 disabled:cursor-auto w-full p-4 flex justify-center items-center bg-black text-white text-sm leading-4 rounded-lg">
+                <button type="submit" [disabled]="this.code().length < 6" class="min-w-[150px] disabled:bg-red-400/30! disabled:cursor-auto w-full p-4 flex justify-center items-center bg-black text-white text-sm leading-4 rounded-lg">
                     @if (this.isValidating()) {
                         <mi-spinner />
                     } @else {

@@ -67,7 +67,7 @@
                     <div class="big-content mb-2"
                     slot="widget-big-content"
                     >
-                        <h1 class=" text-[2.5rem] font-extrabold leading-[3rem]">
+                        <h1 class=" text-[2.5rem] font-extrabold leading-12">
                             {{ widget.data.main | number | replaceBy }}
                         </h1>
                     </div>
@@ -78,14 +78,14 @@
                         [style.color]="widget.footerTextColor"
                         >
                             @if (widget.data.percentageStatus === widgetPercentageStatusEnum.ENCREASE) {
-                                <span class="increasing !text-[#61C554] flex justify-start items-center">
+                                <span class="increasing text-[#61C554]! flex justify-start items-center">
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M4 12L12 4M12 4H6.66667M12 4V9.33333" stroke="#61C554" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                     {{ widget.data.percentageValue }}%
                                 </span>
                             } @else {
-                                <span class="decreasing !text-[#ED695E] flex justify-start items-center">
+                                <span class="decreasing text-[#ED695E]! flex justify-start items-center">
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M4 4L12 12M12 12V6.66667M12 12H6.66667" stroke="#ED695E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
@@ -151,7 +151,7 @@
                 [currentPage]="this.currentPage"
                 [totalItems]="this.totalItems"
                 >
-                    <thead class="bg-[#F8F8F8] sticky z-[5] w-full left-0 text-left"
+                    <thead class="bg-[#F8F8F8] sticky z-5 w-full left-0 text-left"
                     #theadElementRef
                     [style.top.px]="TABLE_STICKY_TOP"
                     slot="table-header"
@@ -180,7 +180,7 @@
                         @if (!(this.loaderService.getLoadingStatus(this.pageLoaderIdentifier.PRODUCTS) | async)) {
                             @if(this.tableProducts.length > 0){
                                 @if (this.selectedItems.length > 0) {
-                                    <tr class="text-sm appear-softly sticky bg-white z-[5] w-full left-0"
+                                    <tr class="text-sm appear-softly sticky bg-white z-5 w-full left-0"
                                     [style.top.px]="selectedDetailsStickyTopSpacing"
                                     >
                                         <td colspan="7" class="text-left pl-4 pr-10 py-4 font-medium">
@@ -235,7 +235,7 @@
                                                 >
                                                     <img src="{{ (product.imagePath != '') ? product.imagePath : 'assets/images/products/no-image.png' }}" class="w-full h-full object-cover object-center" alt="">
                                                 </div>
-                                                <div class="product max-w-[10.625rem] flex flex-col gap-y-2 justify-between items-start">
+                                                <div class="product max-w-42.5 flex flex-col gap-y-2 justify-between items-start">
                                                     <h1 class="text-black text-sm leading-4 font-medium limited-text one-line">
                                                         {{ product.name }}
                                                     </h1>
@@ -273,7 +273,7 @@
                                 <tr class="text-sm appear-softly">
                                     <td class="relative py-4 px-6" *ngIf="this.checkbox">
                                         <label class="checkbox-container relative">
-                                            <span class="checkmark-placeholder placeholder !relative !w-6 !h-6"></span>
+                                            <span class="checkmark-placeholder placeholder relative! w-6! h-6!"></span>
                                         </label>
                                     </td>
                                     <td class="py-4 px-6">
@@ -287,32 +287,32 @@
                                             >
                                                 <div class="placeholder"></div>
                                             </div>
-                                            <div class="product max-w-[10.625rem] flex flex-col gap-y-2 justify-between items-start">
-                                                <h1 class="text-transparent !relative placeholder text-sm leading-4 font-medium limited-text one-line">
+                                            <div class="product max-w-42.5 flex flex-col gap-y-2 justify-between items-start">
+                                                <h1 class="text-transparent relative! placeholder text-sm leading-4 font-medium limited-text one-line">
                                                     Texto médio para o skeleton
                                                 </h1>
                                                 <p
                                                 *ngIf="this.withTinyText"
-                                                class="text-sm !relative !w-fit placeholder text-transparent leading-4 limited-text one-line">
+                                                class="text-sm relative! w-fit! placeholder text-transparent leading-4 limited-text one-line">
                                                     Texto Pequeno
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="py-4 px-6 text-transparent">
-                                        <p class="placeholder !relative !w-fit">Texto pequeno</p>
+                                        <p class="placeholder relative! w-fit!">Texto pequeno</p>
                                     </td>
                                     <td class="py-4 px-6 text-transparent">
-                                        <p class="placeholder !relative !w-fit">Texto pequeno</p>
+                                        <p class="placeholder relative! w-fit!">Texto pequeno</p>
                                     </td>
                                     <td class="py-4 px-6 text-transparent">
-                                        <p class="placeholder !relative !w-fit">Texto pequeno</p>
+                                        <p class="placeholder relative! w-fit!">Texto pequeno</p>
                                     </td>
                                     <td class="py-4 px-6 text-transparent">
-                                        <p class="placeholder !relative !w-fit">Texto pequeno</p>
+                                        <p class="placeholder relative! w-fit!">Texto pequeno</p>
                                     </td>
                                     <td class="py-4 px-6">
-                                        <button class="chip placeholder text-transparent !relative !w-fit py-1 px-2 rounded-full font-medium">
+                                        <button class="chip placeholder text-transparent relative! w-fit! py-1 px-2 rounded-full font-medium">
                                             Texto pequeno
                                         </button>
                                     </td>

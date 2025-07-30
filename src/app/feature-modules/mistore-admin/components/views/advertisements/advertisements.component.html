@@ -86,7 +86,7 @@
                 [currentPage]="this.currentPage"
                 [totalItems]="this.totalItems"
                 >
-                    <thead class="bg-[#F8F8F8] sticky z-[5] w-full left-0 text-left"
+                    <thead class="bg-[#F8F8F8] sticky z-5 w-full left-0 text-left"
                     #theadElementRef
                     [style.top.px]="TABLE_STICKY_TOP"
                     slot="table-header"
@@ -120,7 +120,7 @@
                         @if (!(this.loaderService.getLoadingStatus(this.pageLoaderIdentifier.BRANDS_ADD_PRODUCTS) | async)) {
                             @if(this.tableAdvertisements.length > 0){
                                 @if (this.selectedItems.length > 0) {
-                                    <tr class="text-sm appear-softly sticky bg-white z-[5] w-full left-0"
+                                    <tr class="text-sm appear-softly sticky bg-white z-5 w-full left-0"
                                     [style.top.px]="selectedDetailsStickyTopSpacing"
                                     >
                                         <td colspan="7" class="text-left pl-4 pr-10 py-4 font-medium">
@@ -179,7 +179,7 @@
                                                 >
                                                     <img src="{{ (advertisement.imagePath != '') ? advertisement.imagePath : 'assets/images/advertisements/no-image.png' }}" class="w-full h-full object-cover object-center" alt="">
                                                 </div>
-                                                <div class="advertisement max-w-[10.625rem] flex flex-col gap-y-2 justify-between items-start">
+                                                <div class="advertisement max-w-42.5 flex flex-col gap-y-2 justify-between items-start">
                                                     <h1 class="text-black text-sm leading-4 font-medium limited-text one-line">
                                                         {{ advertisement.name }}
                                                     </h1>
@@ -208,7 +208,7 @@
                                 <tr class="text-sm appear-softly">
                                     <td class="relative py-4 px-6" *ngIf="this.checkbox">
                                         <label class="checkbox-container relative">
-                                            <span class="checkmark-placeholder placeholder !relative !w-6 !h-6"></span>
+                                            <span class="checkmark-placeholder placeholder relative! w-6! h-6!"></span>
                                         </label>
                                     </td>
                                     <td class="py-4 px-6">
@@ -222,32 +222,32 @@
                                             >
                                                 <div class="placeholder"></div>
                                             </div>
-                                            <div class="advertisement max-w-[10.625rem] flex flex-col gap-y-2 justify-between items-start">
-                                                <h1 class="text-transparent !relative placeholder text-sm leading-4 font-medium limited-text one-line">
+                                            <div class="advertisement max-w-42.5 flex flex-col gap-y-2 justify-between items-start">
+                                                <h1 class="text-transparent relative! placeholder text-sm leading-4 font-medium limited-text one-line">
                                                     Texto médio para o skeleton
                                                 </h1>
                                                 <p
                                                 *ngIf="this.withTinyText"
-                                                class="text-sm !relative !w-fit placeholder text-transparent leading-4 limited-text one-line">
+                                                class="text-sm relative! w-fit! placeholder text-transparent leading-4 limited-text one-line">
                                                     Texto Pequeno
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="py-4 px-6 text-transparent">
-                                        <p class="placeholder !relative !w-fit">Texto pequeno</p>
+                                        <p class="placeholder relative! w-fit!">Texto pequeno</p>
                                     </td>
                                     <td class="py-4 px-6 text-transparent">
-                                        <p class="placeholder !relative !w-fit">Texto pequeno</p>
+                                        <p class="placeholder relative! w-fit!">Texto pequeno</p>
                                     </td>
                                     <td class="py-4 px-6 text-transparent">
-                                        <p class="placeholder !relative !w-fit">Texto pequeno</p>
+                                        <p class="placeholder relative! w-fit!">Texto pequeno</p>
                                     </td>
                                     <td class="py-4 px-6 text-transparent">
-                                        <p class="placeholder !relative !w-fit">Texto pequeno</p>
+                                        <p class="placeholder relative! w-fit!">Texto pequeno</p>
                                     </td>
                                     <td class="py-4 px-6  flex justify-end">
-                                        <button class="chip placeholder text-transparent !relative !w-fit py-1 px-2 rounded-full font-medium">
+                                        <button class="chip placeholder text-transparent relative! w-fit! py-1 px-2 rounded-full font-medium">
                                             Texto pequeno
                                         </button>
                                     </td>
@@ -256,7 +256,7 @@
                         }
     
                         <!-- @if (this.selectedItems.length > 0) {
-                            <div class="modal-selected-advertisements fixed ml-6 bottom-10 z-[10] bg-white p-6 w-[360px] h-[240px] rounded-lg shadow-[0px_8px_24px_4px_rgba(0,0,0,0.08)]">
+                            <div class="modal-selected-advertisements fixed ml-6 bottom-10 z-10 bg-white p-6 w-[360px] h-[240px] rounded-lg shadow-[0px_8px_24px_4px_rgba(0,0,0,0.08)]">
                                 <div class="advertisements-container h-full overflow-y-auto">
                                     <div class="boxes flex flex-col gap-4 items-start">
                                         @for (selectedadvertisement of selectedItems; track $index) {

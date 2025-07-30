@@ -1,4 +1,4 @@
-<div class="modal-bg w-full h-full fixed top-0 left-0 z-[101] bg-black/50"
+<div class="modal-bg w-full h-full fixed top-0 left-0 z-101 bg-black/50"
 (click)="this.hideModalFromBg()"
 [ngClass]="{
     'hidden': (!this.showModalBackground() && this.firstTimeOpeningModal()),
@@ -11,6 +11,6 @@
     'block': this.showModalBackground(),
     'hidden': !this.showModalBackground(),
 }"
-class="modal-content appear-softly z-[102] fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
+class="modal-content appear-softly z-102 fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
     <ng-content></ng-content>
 </div>
