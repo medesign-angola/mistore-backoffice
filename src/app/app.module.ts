@@ -7,6 +7,7 @@ import { AuthComponent } from '@templates/auth/auth.component';
 import { StoreAdminComponent } from '@templates/store-admin/store-admin.component';
 import { MistoreAdminComponent } from '@templates/mistore-admin/mistore-admin.component';
 import { CoreModule } from '@core/core.module';
+import { provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { CoreModule } from '@core/core.module';
     CoreModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    provideNgxMask()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

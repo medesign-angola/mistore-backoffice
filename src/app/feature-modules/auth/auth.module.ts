@@ -11,6 +11,8 @@ import { SecondStepComponent } from './components/views/sign-up/steps/second-ste
 import { ThirdStepComponent } from './components/views/sign-up/steps/third-step/third-step.component';
 import { FourthStepComponent } from './components/views/sign-up/steps/fourth-step/fourth-step.component';
 import { SharedModule } from "@shared/shared.module";
+import { StepperDirective } from './components/views/sign-up/stepper/stepper.directive';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -21,11 +23,14 @@ import { SharedModule } from "@shared/shared.module";
     FirstStepComponent,
     SecondStepComponent,
     ThirdStepComponent,
-    FourthStepComponent
+    FourthStepComponent,
+    StepperDirective
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
+    SharedModule,
+    NgxMaskDirective,
     SharedModule
 ]
 })

@@ -28,6 +28,7 @@ import { EditLookDraftComponent } from './components/views/looks/draft/edit/edit
 import { SeeLookComponent } from './components/views/looks/see-look/see-look.component';
 import { PublishLookDraftComponent } from './components/views/looks/draft/publish/publish-look-draft.component';
 import { EditProductComponent } from './components/views/products/edit/edit-product.component';
+import { ProfileComponent } from './components/views/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { EditProductComponent } from './components/views/products/edit/edit-prod
     SeeLookComponent,
     PublishLookDraftComponent,
     EditProductComponent,
+    ProfileComponent,
   ],
   imports: [
     SharedModule,

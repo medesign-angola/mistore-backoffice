@@ -44,7 +44,9 @@
                             <mi-dropzone
                             [showDimentionsText]="false"
                             [name]="'product-images'"
-                            (outcomeFiles)="this.files = $event"/>
+                            (outcomeFiles)="this.files = $event"
+                            [isInvalidFromParent]="this.files.length <= 0"
+                            />
                         </div>
 
                         @if(this.selectedColors.length > 0){
@@ -352,7 +354,9 @@
                 [showPreviewFiles]="false"
                 [multi]="false"
                 [name]="this.theColor!.colorName!"
-                (outcomeFiles)="this.addImagesToColor($event)"/>
+                (outcomeFiles)="this.addImagesToColor($event)"
+                [isInvalidFromParent]="this.colorsWithImages[this.theColor!.id].length <= 0"
+                />
             </div>
         </mi-modal>
     }

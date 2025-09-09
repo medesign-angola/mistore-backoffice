@@ -121,12 +121,27 @@
     <div class="wrapper-tab-content">
         
         <div class="myaccount-tab-content py-28 px-16">
-            <mi-my-account-tab-content *ngIf="this.activeTab === tabsEnum.MY_ACCOUNT"></mi-my-account-tab-content>
-            <mi-requests-tab-content *ngIf="this.activeTab === this.tabsEnum.REQUESTS"></mi-requests-tab-content>
-            <mi-payments-tab-content *ngIf="this.activeTab === this.tabsEnum.PAYMENTS"></mi-payments-tab-content>
-            <mi-shippings-tab-content *ngIf="this.activeTab === this.tabsEnum.SHIPPING"></mi-shippings-tab-content>
-            <mi-devolution-tab-content *ngIf="this.activeTab === this.tabsEnum.DEVOLUTION"></mi-devolution-tab-content>
-            <mi-others-tab-content *ngIf="this.activeTab === this.tabsEnum.OTHERS"></mi-others-tab-content>
+            @switch (this.activeTab) {
+                @case (tabsEnum.MY_ACCOUNT) {
+                    <mi-my-account-tab-content></mi-my-account-tab-content>
+                }
+                @case (tabsEnum.REQUESTS) {
+                    <mi-requests-tab-content></mi-requests-tab-content>
+                }
+                @case (tabsEnum.PAYMENTS) {
+                    <mi-payments-tab-content></mi-payments-tab-content>
+                }
+                @case (tabsEnum.SHIPPING) {
+                    <mi-shippings-tab-content></mi-shippings-tab-content>
+                }
+                @case (tabsEnum.DEVOLUTION) {
+                    <mi-devolution-tab-content></mi-devolution-tab-content>
+                }
+                @case (tabsEnum.OTHERS) {
+                    <mi-others-tab-content></mi-others-tab-content>
+                }
+                @default {}
+            }
         </div>
 
     </div>

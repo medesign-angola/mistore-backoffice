@@ -47,7 +47,9 @@
                                 [showDimentionsText]="false"
                                 [previewFileUrls]="true"
                                 (filePreviewUrl)="this.logoPreviewUrl = ($event[0])"
-                                (outcomeFiles)="this.logo = $event" />
+                                (outcomeFiles)="this.logo = $event"
+                                [isInvalidFromParent]="(this.logoPreviewUrl === null || this.logoPreviewUrl === undefined || this.logoPreviewUrl === {})"
+                                />
                             </div>
                         </div>
                         <div class="cover-image mt-10">
@@ -63,7 +65,9 @@
                                 [name]="'brand-cover-image'"
                                 [previewFileUrls]="true"
                                 (filePreviewUrl)="this.coverImagePreviewUrl = ($event[0])"
-                                (outcomeFiles)="this.coverImage = $event"/>
+                                (outcomeFiles)="this.coverImage = $event"
+                                [isInvalidFromParent]="(this.coverImagePreviewUrl === null || this.coverImagePreviewUrl === undefined || this.coverImagePreviewUrl === {})"
+                                />
                             </div>
                         </div>
 

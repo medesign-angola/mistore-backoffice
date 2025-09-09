@@ -26,6 +26,7 @@ import { InputRangeComponent } from './components/input-range/input-range.compon
 import { ProductsTableComponent } from './components/products/products-table/products-table.component';
 import { OtpInputComponent } from './components/otp-input/otp-input.component';
 import { TailwindClassesDirective } from './components/otp-input/tailwind-classes.directive';
+import { TinyDropzoneComponent } from './components/tiny-dropzone/tiny-dropzone.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { TailwindClassesDirective } from './components/otp-input/tailwind-classe
     ProductsTableComponent,
     OtpInputComponent,
     TailwindClassesDirective,
+    TinyDropzoneComponent,
   ],
   imports: [
     CommonModule,
@@ -87,7 +89,8 @@ import { TailwindClassesDirective } from './components/otp-input/tailwind-classe
     InputRangeComponent,
     LookComponent,
     HorizontalGalleryComponent,
-    OtpInputComponent
+    OtpInputComponent,
+    TinyDropzoneComponent
   ],
 })
 export class SharedModule { }

@@ -1,5 +1,5 @@
 <div class="stepper-container">
-    <div class="steps w-full overflow-hidden">
+    <div class="steps w-full overflow-hidden relative" miStepper [activeStep]="this.activeStep()">
         <div class="step-content-catcher w-fit flex justify-start items-stretch">
             <ng-content></ng-content>
         </div>

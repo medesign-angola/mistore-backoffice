@@ -16,6 +16,7 @@ import { EditLookDraftComponent } from './components/views/looks/draft/edit/edit
 import { SeeLookComponent } from './components/views/looks/see-look/see-look.component';
 import { PublishLookDraftComponent } from './components/views/looks/draft/publish/publish-look-draft.component';
 import { EditProductComponent } from './components/views/products/edit/edit-product.component';
+import { ProfileComponent } from './components/views/profile/profile.component';
 
 const mistoreSignature: string = '- Mistore, Conta de Loja';
 
@@ -124,6 +125,11 @@ const routes: Routes = [
         title: `Centro de Ajuda ${ mistoreSignature }`,
         component: HelpComponent
       },
+      {
+        path: 'profile',
+        title: `Perfil ${ mistoreSignature }`,
+        component: ProfileComponent
+      }
     ]
   }
 ];

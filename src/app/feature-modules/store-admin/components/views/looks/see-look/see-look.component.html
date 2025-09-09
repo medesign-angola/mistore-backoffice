@@ -60,6 +60,7 @@
                                 [showBiggerSvg]="(this.theLook && this.theLook.images.length > 0) ? false : true"
                                 [previewFileUrls]="true"
                                 (outcomeFiles)="this.selectedLookImages = $event"
+                                [isInvalidFromParent]="this.selectedLookImages.length <= 0"
                                 />
                             </div>
                         </div>

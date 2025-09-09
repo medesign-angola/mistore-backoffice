@@ -6,7 +6,7 @@ import { AlertService } from '@core/services/alert/alert.service';
   standalone: false,
   template: `
     <form class="" (submit)="this.validate()">
-        <div class="form-container flex flex-col gap-12">
+        <div class="form-container flex flex-col gap-12 border border-[#E9E9E9] rounded-lg p-10">
             <div class="inputs">
                 <div class="code input flex flex-col gap-y-3">
                     <label for="code" class="text-xs font-medium mb-5">Digite o seu código Mistore</label>
@@ -14,7 +14,7 @@ import { AlertService } from '@core/services/alert/alert.service';
                 </div>
             </div>
             <div class="submit">
-                <button type="submit" [disabled]="this.code().length < 6" class="min-w-[150px] duration-[.3s] disabled:bg-black/70 disabled:cursor-auto w-full p-4 flex justify-center items-center bg-black text-white text-sm leading-4 rounded-lg">
+                <button type="submit" [disabled]="this.code().length < 6" class="min-w-[150px] duration-[.3s] disabled:bg-black/70 disabled:cursor-auto cursor-pointer w-full p-4 flex justify-center items-center bg-black text-white text-sm leading-4 rounded-lg">
                     @if (this.isValidating()) {
                         <mi-spinner />
                     } @else {
@@ -35,7 +35,6 @@ export class FirstStepComponent {
 
   insertCode(event: string){
     this.code.set(event);
-    console.log(event);
   }
 
   onInvalidCode(event: boolean){

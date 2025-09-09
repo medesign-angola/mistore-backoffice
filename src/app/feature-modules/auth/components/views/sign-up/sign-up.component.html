@@ -9,16 +9,22 @@
             </a>
         </div>
         <div class="additionals text-[#999] text-sm">
-            <span class="text-black!">2/</span>4 Passos
+            <span class="text-black!">{{ activeStep() }}/</span>4 Passos
         </div>
     </div>
-    <div class="panel-content p-10 w-full border border-[#E9E9E9] rounded-lg">
-        <mi-stepper>
-            <div class="step-1 w-[318px]">
-                <mi-first-step></mi-first-step>
+    <div class="panel-content w-full">
+        <mi-stepper [activeStep]="this.activeStep()">
+            <div class="step-1 w-[400px]">
+                <mi-first-step (nextStep)="goToStep(2)"></mi-first-step>
             </div>
-            <div class="step-2 w-[318px] hidden">
-                <!-- <mi-second-step></mi-second-step> -->
+            <div class="step-2 w-[400px]">
+                <mi-second-step (formValues)="fullfillSecondStepFormGroup($event)"></mi-second-step>
+            </div>
+            <div class="step-3 w-[400px]">
+                <mi-third-step (formValues)="fullfillThirdStepFormGroup($event)"></mi-third-step>
+            </div>
+            <div class="step-4 w-[400px]">
+                <mi-fourth-step (formValues)="fullfillFourthStepFormGroup($event)"></mi-fourth-step>
             </div>
         </mi-stepper>
     </div>

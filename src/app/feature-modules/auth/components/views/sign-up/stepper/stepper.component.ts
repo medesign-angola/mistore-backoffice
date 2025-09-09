@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'mi-stepper',
@@ -7,5 +7,5 @@ import { Component, computed, input } from '@angular/core';
   styleUrl: './stepper.component.css'
 })
 export class StepperComponent {
-  
+  activeStep = input.required<number>();
 }

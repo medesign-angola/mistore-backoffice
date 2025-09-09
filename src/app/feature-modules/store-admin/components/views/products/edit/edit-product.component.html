@@ -60,7 +60,9 @@
                                 [showDimentionsText]="false"
                                 [name]="'product-images'"
                                 [showBiggerSvg]="false"
-                                (outcomeFiles)="this.files = $event"/>
+                                (outcomeFiles)="this.files = $event"
+                                [isInvalidFromParent]="this.files.length <= 0"
+                                />
                             </div>
                         </div>
 
@@ -374,7 +376,9 @@
                 [showPreviewFiles]="false"
                 [multi]="false"
                 [name]="this.theColor!.colorName!"
-                (outcomeFiles)="this.addImagesToColor($event)"/>
+                (outcomeFiles)="this.addImagesToColor($event)"
+                [isInvalidFromParent]="this.colorsWithImages[this.theColor!.id].length <= 0"
+                />
             </div>
         </mi-modal>
     }

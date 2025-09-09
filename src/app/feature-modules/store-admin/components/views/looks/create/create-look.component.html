@@ -45,6 +45,7 @@
                                 [name]="'looks-images'"
                                 [previewFileUrls]="true"
                                 (outcomeFiles)="this.selectedLookImages = $event"
+                                [isInvalidFromParent]="this.selectedLookImages.length <= 0"
                                 />
                             </div>
                         </div>

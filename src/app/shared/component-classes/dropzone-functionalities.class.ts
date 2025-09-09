@@ -1,23 +1,18 @@
-import { Directive, EventEmitter, Input, Output } from "@angular/core";
+import { Directive, EventEmitter, input, Input, output, Output } from "@angular/core";
 
 @Directive()
 export class DropzoneFunctionalities{
     
   files: any[] = [];
-  @Input() multi: boolean = true;
-  @Output() outcomeFiles: EventEmitter<any[]> = new EventEmitter<any[]>();
+  multi = input<boolean>(true);
+  outcomeFiles = output<any[]>();
 
   emitOutComeFiles(){
     this.outcomeFiles.emit(this.files);
   }
 
-  dropzoneOnChange($event: any){
-    this.files = $event.files;
-    this.startFilesSetup();
-  }
-
-  startFilesSetup(){
-    this.files = [...this.files]; 
+  startFilesSetup(files: any[]){
+    this.files = [...files]; 
     const promise = this.files.map(file => this.loadFile(file));
   }
 
