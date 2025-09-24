@@ -1,11 +1,11 @@
 import { BaseEntity } from "../base/base-entity";
-import { UserInterface } from "../base/user.model";
+import { ShopMetaInterface, UserInterface } from "../base/user.model";
 
 export class User extends BaseEntity {
     Name: string;
     Email: string;
-    Profile: string;
     Token: string;
+    ShopMeta: ShopMetaInterface;
     RefreshToken: string;
     IsFirstAcess: boolean;
 
@@ -17,7 +17,7 @@ export class User extends BaseEntity {
 
         this.Name = user.Name;
         this.Email = user.Email;
-        this.Profile = user.Profile;
+        this.ShopMeta = user.ShopMeta;
         this.Token = user.Token;
         this.RefreshToken = user.RefreshToken ?? '';
         this.IsFirstAcess = user.IsFirstAcess;

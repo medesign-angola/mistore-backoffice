@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/c
 import { ActivatedRoute } from '@angular/router';
 import { Unsubscriber } from '@shared/component-classes/subcriber/unsubscriber.class';
 import { PageLoaderIdentifier } from '@shared/Enums/page-loader-id.enum';
-import { LOOKS } from '@core/mocks/looks.mock';
+import { LOOKS } from '@store/mocks/looks.mock';
 import { LoaderService } from '@core/services/loader/loader.service';
 import { LOOKS_LIMT } from '@shared/constants/data-limit.const';
 import { LookFacade } from '@store/facades/looks/look.facade';

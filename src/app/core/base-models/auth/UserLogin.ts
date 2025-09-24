@@ -1,10 +1,10 @@
 export class UserLogin{
-    nomeUsuario: string;
-    palavraPasse: string;
+    email: string;
+    password: string;
     remoteIpAddress: string = '';
 
-    constructor(user: string, palavraPasse: string) {
-        this.nomeUsuario = user;
-        this.palavraPasse = palavraPasse;
+    constructor(user: string, password: string) {
+        this.email = user;
+        this.password = password;
     }
 }

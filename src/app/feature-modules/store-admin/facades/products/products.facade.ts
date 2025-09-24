@@ -1,7 +1,6 @@
 import { Injectable, inject } from "@angular/core";
 import { catchError, forkJoin, map, Observable, of, switchMap, tap, throwError } from "rxjs";
 import { IProduct, IProductResponse } from "../../models/product.model";
-import { IBrand } from "@core/base-models/base/brands.model";
 import { ProductsData } from "@core/data/store/products.data";
 import { ProductApiService } from "@store/api/products.api.service";
 
@@ -41,10 +40,6 @@ export class ProductFacade{
     favoritesProducts(page: number, limit: number): Observable<IProductResponse>{
         return this.api.getFavoritesProducts(page, limit);
     }
-
-    brands(): Observable<IBrand[]>{
-        return this.api.getBrands();
-    };
 
     editProduct(product: any, page: number): Observable<any>{
         // return this.api.editProduct(product);

@@ -8,6 +8,7 @@ import { StoreAdminComponent } from '@templates/store-admin/store-admin.componen
 import { MistoreAdminComponent } from '@templates/mistore-admin/mistore-admin.component';
 import { CoreModule } from '@core/core.module';
 import { provideNgxMask } from 'ngx-mask';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { provideNgxMask } from 'ngx-mask';
     BrowserModule,
     CoreModule,
     AppRoutingModule,
+    SharedModule
   ],
   providers: [
     provideNgxMask()

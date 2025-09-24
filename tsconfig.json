@@ -9,6 +9,7 @@
       "@core/*": ["app/core/*"],
       "@shared/*": ["app/shared/*"],
       "@env/*": ["environments/*"],
+      "@config/*": ["app/config/*"],
       "@auth/*": ["app/feature-modules/auth/*"],
       "@store/*": ["app/feature-modules/store-admin/*"],
       "@admin/*": ["app/feature-modules/mistore-admin/*"],

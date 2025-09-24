@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '@auth/api/api.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { AuthApi } from '@auth/api/api.service';
 import { AlertService } from '@core/services/alert/alert.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AlertService } from '@core/services/alert/alert.service';
 })
 export class SignUpComponent implements OnInit {
     activeStep = signal<number>(1);
-    api = inject(AuthService);
+    api = inject(AuthApi);
     alert = inject(AlertService);
 
     goToStep(step: number): void{

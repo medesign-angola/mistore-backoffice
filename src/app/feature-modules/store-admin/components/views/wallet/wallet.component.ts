@@ -6,7 +6,6 @@ import { WalletFacade } from '@store/facades/wallet.facade';
 import { IProduct } from '@store/models/product.model';
 import { WALLET_PRODUCTS_LIMIT } from '@shared/constants/data-limit.const';
 import { HorizontalBarChart } from '@shared/interfaces/hz-bar-chart.interface';
-import { PRODUCTS } from '@core/mocks/products.mock';
 import { TableComponentExtender } from '@shared/component-classes/table-component.class';
 import { TableComponentInterface } from '@shared/component-interfaces/table-component.interface';
 import { IWidget } from '@shared/interfaces/widget.interface';

@@ -29,6 +29,8 @@ import { SeeLookComponent } from './components/views/looks/see-look/see-look.com
 import { PublishLookDraftComponent } from './components/views/looks/draft/publish/publish-look-draft.component';
 import { EditProductComponent } from './components/views/products/edit/edit-product.component';
 import { ProfileComponent } from './components/views/profile/profile.component';
+import { LogoutFacade } from '@auth/facades/logout.facade';
+import { AuthApi } from '@auth/api/api.service';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,10 @@ import { ProfileComponent } from './components/views/profile/profile.component';
     PublishLookDraftComponent,
     EditProductComponent,
     ProfileComponent,
+  ],
+  providers: [
+    AuthApi,
+    LogoutFacade
   ],
   imports: [
     SharedModule,

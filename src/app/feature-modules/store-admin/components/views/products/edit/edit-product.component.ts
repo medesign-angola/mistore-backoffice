@@ -7,11 +7,12 @@ import { IProductCategory } from '@core/base-models/base/product-category.model'
 import { AlertService, LogStatus } from '@core/services/alert/alert.service';
 import { LoaderService } from '@core/services/loader/loader.service';
 import { PageLoaderIdentifier } from '@shared/Enums/page-loader-id.enum';
+import { BrandFacade } from '@store/facades/brand.facade';
 import { CategoryFacade } from '@store/facades/category.facade';
 import { ColorFacade } from '@store/facades/color.facade';
 import { ProductFacade } from '@store/facades/products/products.facade';
 import { SizeFacade } from '@store/facades/size.facade';
-import { IProductSubCategory, IProductSize, IProduct, IProductColor, FilenameImage } from '@store/models/product.model';
+import { IProductSubCategory, IProductSize, IProduct, FilenameImage } from '@store/models/product.model';
 import { combineLatest, map } from 'rxjs';
 
 @Component({
@@ -24,6 +25,7 @@ export class EditProductComponent implements OnInit {
 
   public loaderService = inject(LoaderService);
   private productFacade = inject(ProductFacade);
+  private brandFacade = inject(BrandFacade);
   private categoryFacade = inject(CategoryFacade);
   private sizeFacade = inject(SizeFacade);
   private colorFacade = inject(ColorFacade);
@@ -83,7 +85,7 @@ export class EditProductComponent implements OnInit {
     this.loaderService.setLoadingStatus(this.pageLoaderIdentifier.CATEGORIES_ADD_PRODUCTS, true);
     this.loaderService.setLoadingStatus(this.pageLoaderIdentifier.SUB_CATEGORIES_ADD_PRODUCTS, true);
     
-    this.productFacade.brands().subscribe((incomingBrands: IBrand[]) => {
+    this.brandFacade.brands.subscribe((incomingBrands: IBrand[]) => {
       this.brandsToSelect.set(incomingBrands);
       if(this.brandsToSelect.length > 0){
         this.loaderService.setLoadingStatus(this.pageLoaderIdentifier.BRANDS_ADD_PRODUCTS, false);

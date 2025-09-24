@@ -6,13 +6,13 @@
     <div class="wrapper-content mt-10 flex flex-col gap-8 items-center">
         <section class="header-section relative w-full">
             <div class="cover w-full h-[15rem] relative overflow-hidden rounded">
-                <img src="/assets/images/profile/cover.jpg" class="w-full h-full object-cover object-center" alt="">
+                <img [src]="user?.ShopMeta?.Cover" class="w-full h-full object-cover object-center" alt="">
                 <div class="cover-content p-4 absolute w-full h-full top-0 left-0 flex flex-col justify-between">
                     <div class="head flex justify-between items-center">
                         <h1 class="font-bold text-2xl">
                             Perfil
                         </h1>
-                        <span class="location bg-black/20 py-0.5 px-1 rounded text-white text-sm">Localização: Kilamba, quarterão X43 - AP 31 </span>
+                        <span class="location bg-black/20 py-0.5 px-1 rounded text-white text-sm">{{ user?.ShopMeta?.Location![0] }}</span>
                     </div>
                     <div class="bottom flex justify-end items-center">
                         <button class="cursor-pointer flex w-fit text-xs font-semibold text-white gap-1 justify-center items-center py-1 px-2 rounded bg-black/50">
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="profile w-[8.25rem] h-[8.25rem] rounded-full absolute border-4 border-white overflow-hidden flex justify-center items-center -bottom-10 left-[50%] -translate-x-[50%] -translate-y-[100%]">
-                <img src="/assets/images/profile/profile.png" class="w-full h-full object-cover object-center" alt="">
+                <img [src]="user?.ShopMeta?.Profile" class="w-full h-full object-cover object-center" alt="">
                 <button class="cursor-pointer absolute bottom-0 left-0 flex w-full h-12 text-xs font-semibold text-white gap-1 justify-center items-center py-1 px-2 rounded bg-black/40">
                     Editar
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,16 +48,16 @@
                 </button>
             </div>
             <div class="store-info mt-16 flex flex-col items-center justify-center">
-                <h1 class="name text-base leading-6 font-medium">Isaquias Sebastião Store</h1>
-                <p class="email my-2 text-sm text-[#999999]">miguelpaulovida@gmail.com</p>
+                <h1 class="name text-base leading-6 font-medium">{{ user?.Name }}</h1>
+                <p class="email my-2 text-sm text-[#999999]">{{ user?.Email }}</p>
                 <div class="more-details flex gap-4 justify-center items-center">
                     <div class="phone text-black text-xs font-medium">
                         Telefone
-                        <span class="text-sm ml-2 text-[#999999]">931183898</span>
+                        <span class="text-sm ml-2 text-[#999999]">{{ user?.ShopMeta?.Phone }}</span>
                     </div>
                     <div class="nif text-black text-xs font-medium">
                         NIF
-                        <span class="text-sm ml-2 text-[#999999]">8736390LAS863</span>
+                        <span class="text-sm ml-2 text-[#999999]">{{ user?.ShopMeta?.Nif }}</span>
                     </div>
                 </div>
             </div>
@@ -67,36 +67,37 @@
                 <h1 class="text-lg font-bold">Informações pessoais</h1>
             </div>
             <div class="form mt-8">
-                <form class="">
+                <form [formGroup]="this.profileFormGroup" class="">
                     <div class="inputs w-full flex flex-wrap gap-7">
                         <div class="input w-full flex flex-col gap-y-3 max-w-[18.75rem]">
                             <label for="phone" class="text-xs font-medium">Telefone</label>
                             <input type="text"
                             class="placeholder:text-xs text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
-                            formControlNamey="phone" placeholder="924 232 234" id="phone">
+                            formControlName="phone" placeholder="Insira o contacto" id="phone">
                         </div>
                         <div class="input w-full flex flex-col gap-y-3 max-w-[18.75rem]">
                             <label for="nif" class="text-xs font-medium">NIF</label>
                             <input type="text"
                             class="placeholder:text-xs text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
-                            formControlNamey="nif" placeholder="Insira o seu NIF" id="nif">
+                            formControlName="nif" placeholder="Insira o seu NIF" id="nif">
                         </div>
                         <div class="input w-full flex flex-col gap-y-3 max-w-[18.75rem]">
                             <label for="email" class="text-xs font-medium">Email</label>
                             <input type="email"
                             class="placeholder:text-xs text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
-                            formControlNamey="email" placeholder="email@example.com" id="email">
+                            formControlName="email" placeholder="Insira o email" id="email">
                         </div>
                         <div class="input w-full flex flex-col gap-y-3 max-w-[18.75rem]">
-                            <label for="name" class="text-xs font-medium">Nome da loja</label>
+                            <label for="shop_name" class="text-xs font-medium">Nome da loja</label>
                             <input type="text"
                             class="placeholder:text-xs text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
-                            formControlNamey="name" placeholder="Insira o nome" id="name">
+                            formControlName="shop_name" placeholder="Insira o nome" id="shop_name">
                         </div>
                         <div class="select-category w-full max-w-[18.75rem]">
                             <mi-select
                             [label]="'Categoria da loja'"
                             [name]="'select-category'"
+                            [multi]="true"
                             [items]="[{ name: 'category-1', id: 'cat' }]"
                             [optionValue]="'id'"
                             [optionName]="'name'"
@@ -104,13 +105,25 @@
                             [placeholder]="'Seleccione a categoria'"
                             />
                         </div>
-                        <div class="input w-full flex flex-col gap-y-3 max-w-[18.75rem]">
+                        <div class="select-locations w-full max-w-[18.75rem]">
+                            <mi-select
+                            [label]="'Categoria da loja'"
+                            [name]="'select-locations'"
+                            [multi]="true"
+                            [items]="[{ name: 'location-1', id: 'loc' }]"
+                            [optionValue]="'id'"
+                            [optionName]="'name'"
+                            [required]="true"
+                            [placeholder]="'Seleccione a categoria'"
+                            />
+                        </div>
+                        <!-- <div class="input w-full flex flex-col gap-y-3 max-w-[18.75rem]">
                             <label for="location" class="text-xs font-medium">localização</label>
                             <input type="text"
                             class="placeholder:text-xs text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
-                            formControlNamey="location" placeholder="Insira a localização" id="location">
-                        </div>
-                        <div class="input w-full flex flex-col gap-y-3 max-w-[18.75rem]">
+                            formControlName="location" placeholder="Insira a localização" id="location">
+                        </div> -->
+                        <!-- <div class="input w-full flex flex-col gap-y-3 max-w-[18.75rem]">
                             <label for="password" class="text-xs font-medium">Senha actual</label>
                             <input type="password"
                             class="placeholder:text-xs text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
@@ -123,11 +136,11 @@
                             formControlNamey="new_password" placeholder="Insira a nova senha" id="new_password">
                         </div>
                         <div class="input w-full flex flex-col gap-y-3 max-w-[18.75rem]">
-                            <label for="confinrm_password" class="text-xs font-medium">Confirmar senha</label>
+                            <label for="confirm_password" class="text-xs font-medium">Confirmar senha</label>
                             <input type="password"
                             class="placeholder:text-xs text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
-                            formControlNamey="new_password" placeholder="Confirme a nova senha" id="confinrm_password">
-                        </div>
+                            formControlNamey="confirm_password" placeholder="Confirme a nova senha" id="confirm_password">
+                        </div> -->
                     </div>
                     <div class="descripiton mt-7">
                         <div class="description input flex flex-col gap-y-3">
@@ -137,7 +150,7 @@
                             }" -->
                             <textarea
                             rows="5" class="placeholder:text-xs resize-none text-xs placeholder:text-[#999] focus:outline-none p-[14px] text-[#999] bg-[#F8F8F8] border border-[#E9E9E9] rounded-lg"
-                            formControlNamey="description" id="description"></textarea>
+                            formControlName="description" id="description"></textarea>
                         </div>
                     </div>
                     <div class="buttons flex justify-end items-center mt-8">

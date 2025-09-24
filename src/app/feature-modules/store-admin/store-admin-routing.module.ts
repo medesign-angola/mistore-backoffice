@@ -17,6 +17,7 @@ import { SeeLookComponent } from './components/views/looks/see-look/see-look.com
 import { PublishLookDraftComponent } from './components/views/looks/draft/publish/publish-look-draft.component';
 import { EditProductComponent } from './components/views/products/edit/edit-product.component';
 import { ProfileComponent } from './components/views/profile/profile.component';
+import { ClientAuthGuard } from '@core/guards/client-auth.guard';
 
 const mistoreSignature: string = '- Mistore, Conta de Loja';
 
@@ -24,6 +25,7 @@ const routes: Routes = [
   {
     path: '',
     component: StoreAdminComponent,
+    canActivateChild: [ ClientAuthGuard ],
     children: [
       {
         path: '',

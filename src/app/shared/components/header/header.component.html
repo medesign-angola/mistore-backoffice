@@ -1,7 +1,7 @@
 <div class="header-container">
     <div class="content flex justify-start items-stretch">
         
-        @if (this.appearGreetings) {
+        @if (this.appearGreetings()) {
         <div class="greetings-col max-w-[14.188rem] grow-1 border-r border-[#E9E9E9]">
                 <div class="title mb-2">
                     <h1 class="text-black text-xl font-semibold limited-text one-line">
@@ -52,7 +52,7 @@
         <div class="user-col max-w-63 pl-0 grow-1 flex gap-4 justify-start items-stretch">
             <div class="avatar w-[56px] h-[56px]">
                 <div class="profile w-full h-full rounded-full overflow-hidden">
-                    <img src="{{ this.user.Profile }}" class="w-full h-full object-cover object-center" alt="">
+                    <img src="{{ this.storeProfile.Profile }}" class="w-full h-full object-cover object-center" alt="">
                 </div>
             </div>
             <div class="profile-details max-w-[11.45rem]">

@@ -11,7 +11,7 @@ export class AlertService {
 
   constructor() { }
 
-  add(message: string, status: LogStatus = LogStatus.DEFAULT, timetout?: number): void{
+  add(message: string, status: LogStatus = LogStatus.DEFAULT, timetoutInSeconds?: number): void{
       let randomId;
       do {
           randomId = this.randomize(1, 100);
@@ -19,7 +19,7 @@ export class AlertService {
       let theLog = { message: message, status: status, identifier: randomId };
       this.logs.push( theLog );
       this.refreshLogs$();
-      this.removeMessageAfterTimeInSeconds(theLog, timetout);
+      this.removeMessageAfterTimeInSeconds(theLog, timetoutInSeconds);
   }
 
   private refreshLogs$(){

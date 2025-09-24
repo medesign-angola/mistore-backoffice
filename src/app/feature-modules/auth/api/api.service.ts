@@ -1,24 +1,34 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
+import { AuthModule } from "@auth/auth.module";
+import { Simulator } from "@auth/services/simulator.service";
+import { GenericApi } from "@core/api/generic.api.service";
 import { UserLogin } from "@core/base-models/auth/UserLogin";
 import { environment } from "@env/environment.development";
 import { Observable } from "rxjs";
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'any'
 })
-export class AuthService{
-    constructor (private http: HttpClient) {}
+export class AuthApi{
+
+    api = inject(GenericApi);
+    private simulator = inject(Simulator);
 
     register(user: UserRegister): Observable<any> {
-        return this.http.post(`${ environment.backend }/api/ShopApi/RegisterShop`, {
+        return this.api.post<any>(`api/ShopApi/RegisterShop`, {
             fullname: user.name,
-            
+
         }, { observe: 'response' }).pipe();
     }
 
     login(user: UserLogin): Observable<any> {
-        return this.http.post(`${ environment.backend }/api/login`, user, { observe: 'response' });
+        // return this.api.post(`api/login`, user, { observe: 'response' })
+        return this.simulator.login(user);
+    }
+
+    logout(): Observable<any>{
+        return this.simulator.logout();
     }
 }
 

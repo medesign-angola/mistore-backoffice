@@ -13,6 +13,9 @@ import { FourthStepComponent } from './components/views/sign-up/steps/fourth-ste
 import { SharedModule } from "@shared/shared.module";
 import { StepperDirective } from './components/views/sign-up/stepper/stepper.directive';
 import { NgxMaskDirective } from 'ngx-mask';
+import { Simulator } from './services/simulator.service';
+import { AuthApi } from './api/api.service';
+import { LoginFacade } from './facades/login.facade';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,11 @@ import { NgxMaskDirective } from 'ngx-mask';
     ThirdStepComponent,
     FourthStepComponent,
     StepperDirective
+  ],
+  providers: [
+    Simulator,
+    AuthApi,
+    LoginFacade,
   ],
   imports: [
     CommonModule,

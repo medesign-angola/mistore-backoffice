@@ -179,20 +179,22 @@
                     slot="table-header"
                     >
                         <tr class="text-sm">
-                            <th class="relative py-4 px-6" *ngIf="this.checkbox">
-                                <label class="checkbox-container"
-                                [ngClass]="{
-                                    'all-checked': this.selectedItems.length === this.totalItems,
-                                    'some-checked': this.selectedItems.length > 0  && (this.selectedItems.length < this.totalItems) 
-                                }"
-                                >
-                                    <input type="checkbox"
-                                    (click)="this.toggleSelect()"
-                                    [checked]="this.selectedItems.length > 0"
+                            @if(this.checkbox){
+                                <th class="relative py-4 px-6">
+                                    <label class="checkbox-container"
+                                    [ngClass]="{
+                                        'all-checked': this.selectedItems.length === this.totalItems,
+                                        'some-checked': this.selectedItems.length > 0  && (this.selectedItems.length < this.totalItems) 
+                                    }"
                                     >
-                                    <span class="checkmark checkmark-th"></span>
-                                </label>
-                            </th>
+                                        <input type="checkbox"
+                                        (click)="this.toggleSelect()"
+                                        [checked]="this.selectedItems.length > 0"
+                                        >
+                                        <span class="checkmark checkmark-th"></span>
+                                    </label>
+                                </th>
+                            }
                             <th class="py-4 px-6" *ngFor="let item of this.tableHeader; let l = last"
                             [ngClass]="{
                                 'text-right': l
@@ -249,38 +251,40 @@
                                         'bg-[#F8F8F8]': isSelected(product.id, 'checked')
                                     }"
                                     >
-                                        <td class="relative py-4 px-6"
-                                        *ngIf="this.checkbox"
-                                        >
-                                            <label class="checkbox-container">
-                                                <input
-                                                type="checkbox"
-                                                [checked]="isSelected(product.id, 'checked')"
-                                                (click)="selectItem(product)"
-                                                >
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </td>
+                                        @if(this.checkbox){
+                                            <td class="relative py-4 px-6">
+                                                <label class="checkbox-container">
+                                                    <input
+                                                    type="checkbox"
+                                                    [checked]="isSelected(product.id, 'checked')"
+                                                    (click)="selectItem(product)"
+                                                    >
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </td>
+                                        }
                                         <td class="py-4 px-6">
                                             <div class="product-details flex gap-x-2 justify-start items-center">
-                                                <div class="image w-12 h-12 overflow-hidden"
-                                                *ngIf="this.withImage"
-                                                [ngClass]="{
-                                                    'rounded-full': this.imageRadius == 'full',
-                                                    'rounded': this.imageRadius == 'lg',
-                                                }"
-                                                >
-                                                    <img src="{{ (product.imagePath != '') ? product.imagePath : 'assets/images/products/no-image.png' }}" class="w-full h-full object-cover object-center" alt="">
-                                                </div>
+                                                @if(this.withImage){
+                                                    <div class="image w-12 h-12 overflow-hidden"
+                                                    [ngClass]="{
+                                                        'rounded-full': this.imageRadius == 'full',
+                                                        'rounded': this.imageRadius == 'lg',
+                                                    }"
+                                                    >
+                                                        <img src="{{ (product.imagePath != '') ? product.imagePath : 'assets/images/products/no-image.png' }}" class="w-full h-full object-cover object-center" alt="">
+                                                    </div>
+                                                }
                                                 <div class="product max-w-42.5 flex flex-col gap-y-2 justify-between items-start">
                                                     <h1 class="text-black text-sm leading-4 font-medium limited-text one-line" [title]="product.name">
                                                         {{ product.name }}
                                                     </h1>
-                                                    <p
-                                                    *ngIf="this.withTinyText"
-                                                    class="text-sm text-[#aaa] leading-4 limited-text one-line">
-                                                        ID: {{ product.ID }}
-                                                    </p>
+                                                    @if(this.withTinyText){
+                                                        <p
+                                                        class="text-sm text-[#aaa] leading-4 limited-text one-line">
+                                                            ID: {{ product.ID }}
+                                                        </p>
+                                                    }
                                                 </div>
                                             </div>
                                         </td>

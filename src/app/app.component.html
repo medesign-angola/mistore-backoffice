@@ -1,1 +1,9 @@
+<div class="alerts fixed z-1020 right-8"
+[ngClass]="{
+    'mt-6': isOnAuthenticationPage(),
+    'mt-32': !isOnAuthenticationPage(),
+}"
+>
+    <mi-alert />
+</div>
 <router-outlet />

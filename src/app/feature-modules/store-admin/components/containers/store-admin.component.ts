@@ -1,5 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+import { HttpStatusCode } from '@angular/common/http';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, inject, signal } from '@angular/core';
 import { ActivatedRoute, Event, NavigationEnd, Router } from '@angular/router';
+import { LogoutFacade } from '@auth/facades/logout.facade';
 import { SidebarExtender } from '@shared/component-classes/sidebar/sidebar-extender.class';
 import { BadgeColorEnum } from '@shared/Enums/badge.enum';
 import { ISidebar } from '@shared/interfaces/sidebar.interface';
@@ -13,6 +15,9 @@ import { filter } from 'rxjs/operators';
 })
 export class StoreAdminComponent extends SidebarExtender implements OnInit, AfterViewInit {
   
+  private logoutFacade = inject(LogoutFacade);
+  isLeaving = signal(false);
+
   @ViewChild('sidebaerElementRef') override sidebaerElementRef!: ElementRef<HTMLElement>;
   @ViewChild('bodyContainer') override bodyContainer!: ElementRef<HTMLElement>;
 
@@ -98,6 +103,16 @@ export class StoreAdminComponent extends SidebarExtender implements OnInit, Afte
   }
 
   ngAfterViewInit(): void {
+  }
+
+  handleLogout(): void{
+    this.isLeaving.set(true);
+    this.logoutFacade.logout().subscribe(response => {
+      if(response.status === HttpStatusCode.NoContent){
+        this.router.navigate(['/auth/sign-in']);
+        this.isLeaving.set(false);
+      }
+    })
   }
 
 }

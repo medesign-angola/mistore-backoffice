@@ -48,7 +48,7 @@
 *{
     font-family: 'Inter';
     box-sizing: border-box;
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
     -webkit-tap-highlight-color: transparent;
 }
 .overflow-x-auto::-webkit-scrollbar,

@@ -1,5 +1,8 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, inject } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, inject, input } from '@angular/core';
+import { ShopMetaInterface } from '@core/base-models/base/user.model';
 import { User } from '@core/base-models/user/User';
+import { AuthenticationService } from '@core/services/auth/authentication.service';
+import { UUIDGenerator } from '@core/services/uuid-generator.service';
 
 @Component({
     selector: 'mi-header',
@@ -9,18 +12,22 @@ import { User } from '@core/base-models/user/User';
 })
 export class HeaderComponent implements OnInit, OnChanges {
 
-  @Input() appearGreetings: boolean = true;
-  user!: User;
+  authenticated = inject(AuthenticationService);
+  appearGreetings = input<boolean>(true);
+  user!: Pick<User, 'id' | 'Name' | 'Email' >;
+  storeProfile!: Pick<ShopMetaInterface, 'Profile' | 'Cover' >
 
   ngOnInit(): void {
-    this.user = new User({
-      Id: "56de-23oed-433lr-4rr556dmios3443",
-      Name: 'Isaquias Sebastião Marques',
-      Email: 'isaquias.marques@medesign-angola.com',
-      Profile: 'assets/images/profile/avatar.png',
-      Token: "dbshjbndilkfopkproiejr78y32oijeiwoj98h",
-      IsFirstAcess: false,
-    });
+    this.storeProfile = {
+      Profile: this.authenticated.getUserShopProfile(),
+      Cover: this.authenticated.getUserShopCover()
+    };
+
+    this.user = {
+      id: this.authenticated.getUserId(),
+      Name: this.authenticated.getUserName(),
+      Email: this.authenticated.getUserEmail(),
+    };
   }
 
   ngOnChanges(changes: SimpleChanges): void {

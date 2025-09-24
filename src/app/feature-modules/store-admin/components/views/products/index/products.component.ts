@@ -5,7 +5,7 @@ import { WidgetPercentageStatusEnum } from '@shared/Enums/widget-percentage-stat
 import { TableComponentExtender } from '@shared/component-classes/table-component.class';
 import { TableComponentInterface } from '@shared/component-interfaces/table-component.interface';
 import { IWidget } from '@shared/interfaces/widget.interface';
-import { PRODUCTS } from '@core/mocks/products.mock';
+import { PRODUCTS } from '@store/mocks/products.mock';
 import { LoaderService } from '@core/services/loader/loader.service';
 import { SVGRefEnum } from '@shared/Enums/svg-ref.enum';
 import { PRODUCTS_LIMIT } from '@shared/constants/data-limit.const';
@@ -209,8 +209,6 @@ export class ProductsComponent extends TableComponentExtender implements OnInit,
     this.productFacade.products(page, limit).subscribe({
       next: (incoming: IProductResponse) => {
         this.tableProducts = incoming.products;
-
-        console.log(incoming.products);
 
         if(this.tableProducts.length > 0){
 

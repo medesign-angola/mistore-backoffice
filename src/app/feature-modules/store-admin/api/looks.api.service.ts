@@ -1,49 +1,43 @@
-import { Injectable } from "@angular/core";
-import { StoreApi } from "./store.api.service";
+import { inject, Injectable } from "@angular/core";
 import { ILook, ILookResponse } from "@store/models/looks.model";
-import { environment } from "@env/environment.development";
 import { Transformer } from "@shared/component-classes/transformation/transformer.class";
 import { map, Observable } from "rxjs";
-import { HttpHeaders } from "@angular/common/http";
+import { GenericApi } from "@core/api/generic.api.service";
 
 @Injectable({
     providedIn: 'root'
 })
-export class LookApiService extends StoreApi{
+export class LookApiService{
+
+    api = inject(GenericApi);
     
     getLooks(page: number, limit_per_page: number): Observable<ILookResponse>{
-        return this.http.get<ILook[]>(`${ environment.backend }/api/LookApi/GetLookByUser?shop_id=${ this.storeId }&page=${ page }&page_size=${ limit_per_page }&sortColumn=created_at&order=desc`,
-            { headers: this.headers }
-        )
+        return this.api.get<ILook[]>(`api/LookApi/GetLookByUser?shop_id=${ this.api.getUserShopId }&page=${ page }&page_size=${ limit_per_page }&sortColumn=created_at&order=desc`)
         .pipe(
             map((incomingLooks: any) => ({
-                total: incomingLooks.look_count,
-                looks: Transformer.looks(incomingLooks.looks)
+                total: (incomingLooks) ? incomingLooks.look_count : 0,
+                looks: Transformer.looks((incomingLooks) ? incomingLooks.looks : [])
             }))
         )
     }
 
     getLookById(id: string): Observable<ILook[]>{
-        return this.http.get<ILook[]>(`${ environment.backend }/api/LookApi/GetByIdlookDetails?id=${ id }`, { headers: this.headers })
+        return this.api.get<ILook[]>(`api/LookApi/GetByIdlookDetails?id=${ id }`)
                         .pipe(
-                            map((incoming: any) => Transformer.looks(incoming.looks))
+                            map((incoming: any) => Transformer.looks((incoming) ? incoming.looks : []))
                         )
     }
 
     publishLook(look: any): Observable<any>{
-        const localHeaders = new HttpHeaders().set('Content-Type', 'text/json');
-        return this.http.post(`${ environment.backend }/api/LookApi/InsertLook`, look, { headers: localHeaders });
+        return this.api.post(`api/LookApi/InsertLook`, look);
     }
 
     editLook(look: any): Observable<any>{
-        // console.log(look, look.look_id, look.user_id);
-        const localHeaders = new HttpHeaders().set('Content-Type', 'text/json');
-        return this.http.put(`${ environment.backend }/api/LookApi/UpdateLook?look_id=${ look.look_id }&user_id=${ look.user_id }`, look, { headers: localHeaders });
+        return this.api.put(`api/LookApi/UpdateLook?look_id=${ look.look_id }&user_id=${ look.user_id }`, look);
     }
 
     updateLookProducts(data: any): Observable<any>{
-        const localHeaders = new HttpHeaders().set('Content-Type', 'text/json');
-        return this.http.put(`${ environment.backend }/api/LookApi/ProductListUpdate`, data, { headers: localHeaders });
+        return this.api.put(`api/LookApi/ProductListUpdate`, data);
     }
 
     deleteLook(look: any): Observable<any>{
@@ -51,7 +45,7 @@ export class LookApiService extends StoreApi{
             body: look,
             headers: { 'Content-Type': 'application/json' }
         };
-        return this.http.delete<any>(`${ environment.backend }/api/LookApi/DeleteLook`, options);
+        return this.api.delete<any>(`api/LookApi/DeleteLook`, options);
     }
 
 }

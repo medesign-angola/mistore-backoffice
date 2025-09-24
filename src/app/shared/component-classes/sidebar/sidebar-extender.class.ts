@@ -1,14 +1,16 @@
 import { Directive, ElementRef, inject } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AuthenticationService } from "@core/services/auth/authentication.service";
 import { ISidebar } from "@shared/interfaces/sidebar.interface";
 
 const INITIAL_INDEX: number = 0;
 
 @Directive()
-export class SidebarExtender {
+export abstract class SidebarExtender {
 
     router = inject(Router);
     route = inject(ActivatedRoute);
+    protected authService = inject(AuthenticationService);
 
     sidebaerElementRef!: ElementRef<HTMLElement>;
     bodyContainer!: ElementRef<HTMLElement>;
@@ -39,11 +41,12 @@ export class SidebarExtender {
     }
 
     getSidebarItemIndex(path: string, sidebarIndex: number): number{
-        return this.sidebarMenuItems[sidebarIndex].items.findIndex(item => item.routeTo === path);
+        return this.sidebarMenuItems[sidebarIndex]?.items.findIndex(item => item.routeTo === path);
     }
 
     changeActiveItemOnMenu(sidebarIndex: number, sidebarItemIndex: number): void{
         this.deactivateAllOthers();
+        if(!this.sidebarMenuItems[sidebarIndex]) return;
         this.sidebarMenuItems[sidebarIndex].items[sidebarItemIndex].active = true;
     }
 
@@ -52,4 +55,5 @@ export class SidebarExtender {
         sidebar.items.forEach(item => item.active = false);
         });
     }
+    
 }

@@ -3,6 +3,8 @@
         <div class="nav py-6 px-8">
             <sidebar-menu
             [sidebarMenuItems]="this.sidebarMenuItems"
+            (logoutEmitter)="this.handleLogout()"
+            [isLeaving]="isLeaving()"
             />
         </div>
     </aside>
@@ -10,9 +12,6 @@
         <header class="w-full sticky top-0 py-6 px-8 z-100 bg-white border-b border-[#E9E9E9]">
             <mi-header />
         </header>
-        <div class="alerts fixed z-1020 right-8 mt-6">
-            <mi-alert />
-        </div>
         <div class="content-wrapper py-0 px-0">
             <router-outlet />
         </div>

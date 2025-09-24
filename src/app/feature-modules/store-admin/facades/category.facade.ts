@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
 import { IProductCategory } from "@core/base-models/base/product-category.model";
-import { GenericApiService } from "@store/api/generic.api.service";
+import { CategoriesApiService } from "@store/api/categories.api.service";
 import { IProductSubCategory } from "@store/models/product.model";
 import { BehaviorSubject, map, Observable } from "rxjs";
 
@@ -10,7 +10,7 @@ import { BehaviorSubject, map, Observable } from "rxjs";
 export class CategoryFacade{
 
     private categories$ = new BehaviorSubject<IProductCategory[]>([]);
-    private api = inject(GenericApiService);
+    private api = inject(CategoriesApiService);
 
     constructor(){
         this.categoriesWithSubcategories();
