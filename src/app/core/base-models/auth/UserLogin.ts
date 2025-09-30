@@ -7,4 +7,11 @@ export class UserLogin{
         this.email = user;
         this.password = password;
     }
+
+    toObject(): Object{
+        return {
+            email: this.email,
+            password: this.password
+        }
+    }
 }

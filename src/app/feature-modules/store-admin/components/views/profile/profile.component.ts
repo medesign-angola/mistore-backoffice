@@ -56,4 +56,12 @@ export class ProfileComponent implements OnInit {
       'description': user.ShopMeta.Description
     })
   }
+
+  submit(): void{
+    if(this.profileFormGroup.invalid) return;
+    this.profileFacade.update(this.profileFormGroup.value).subscribe({
+      next: response => console.log,
+      error: error => console.error
+    });
+  }
 }

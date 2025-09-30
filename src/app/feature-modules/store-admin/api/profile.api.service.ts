@@ -11,4 +11,8 @@ export class ProfileApi {
     getProfile(): Observable<any>{
         return this.store.get(`api/profile?shop=${ this.store.getUserShopId }`);
     }
+
+    updateProfile(profile: any): Observable<any>{
+        return this.store.put(`api/profile/update`, profile);
+    }
 }

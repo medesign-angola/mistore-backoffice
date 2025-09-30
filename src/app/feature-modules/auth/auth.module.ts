@@ -16,6 +16,8 @@ import { NgxMaskDirective } from 'ngx-mask';
 import { Simulator } from './services/simulator.service';
 import { AuthApi } from './api/api.service';
 import { LoginFacade } from './facades/login.facade';
+import { ForgotPasswordComponent } from './components/views/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/views/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { LoginFacade } from './facades/login.facade';
     SecondStepComponent,
     ThirdStepComponent,
     FourthStepComponent,
-    StepperDirective
+    StepperDirective,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   providers: [
     Simulator,

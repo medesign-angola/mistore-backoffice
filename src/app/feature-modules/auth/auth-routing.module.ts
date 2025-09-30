@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './components/containers/auth.component';
 import { SignInComponent } from './components/views/sign-in/sign-in.component';
 import { SignUpComponent } from './components/views/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './components/views/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,12 @@ const routes: Routes = [
         path: 'sign-up',
         title: 'Criar a minha conta - Mistore, Autenticação',
         component: SignUpComponent
-      }
+      },
+      {
+        path: 'forgot-password',
+        title: 'Esqueci a minha senha',
+        component: ForgotPasswordComponent
+      },
     ]
   }
 ];

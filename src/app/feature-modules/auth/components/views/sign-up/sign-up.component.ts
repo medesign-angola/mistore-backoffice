@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthApi } from '@auth/api/api.service';
+import { RegisterFacade } from '@auth/facades/register.facade';
 import { AlertService } from '@core/services/alert/alert.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { AlertService } from '@core/services/alert/alert.service';
 })
 export class SignUpComponent implements OnInit {
     activeStep = signal<number>(1);
-    api = inject(AuthApi);
+    private registerFacade = inject(RegisterFacade);
     alert = inject(AlertService);
 
     goToStep(step: number): void{
@@ -51,13 +52,13 @@ export class SignUpComponent implements OnInit {
 
     private register(formGroup: FormGroup): void{
         console.log(formGroup.value)
-        // this.api.register(formGroup.value).subscribe({
-        //     next: response => {
-        //         console.log(response)
-        //     },
-        //     error: error => {
-        //         console.error(error)
-        //     }
-        // });
+        this.registerFacade.register(formGroup.value).subscribe({
+            next: response => {
+                console.log(response)
+            },
+            error: error => {
+                console.error(error)
+            }
+        });
     }
 }
