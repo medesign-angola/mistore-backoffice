@@ -24,6 +24,10 @@ export class ProfileFacade {
         );
     }
 
+    update(profile: any): Observable<any>{
+        return this.api.updateProfile(profile).pipe();
+    }
+
     private storedData(): User{
         return {
             Name: this.authService.getUserName(),

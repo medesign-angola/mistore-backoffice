@@ -67,7 +67,7 @@
                 <h1 class="text-lg font-bold">Informações pessoais</h1>
             </div>
             <div class="form mt-8">
-                <form [formGroup]="this.profileFormGroup" class="">
+                <form (submit)="submit()" [formGroup]="this.profileFormGroup" class="">
                     <div class="inputs w-full flex flex-wrap gap-7">
                         <div class="input w-full flex flex-col gap-y-3 max-w-[18.75rem]">
                             <label for="phone" class="text-xs font-medium">Telefone</label>
