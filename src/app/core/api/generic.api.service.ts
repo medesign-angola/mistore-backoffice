@@ -1,3 +1,4 @@
+import { keyframes } from "@angular/animations";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { AlertService, LogStatus } from "@core/services/alert/alert.service";
@@ -15,7 +16,7 @@ export class GenericApi {
     private alertService = inject(AlertService);
 
     private headers: HttpHeaders = new HttpHeaders({
-        'Authorization': 'Bearer {token}',
+        'Authorization': 'Bearer ' + this.authService.getUserToken(),
         'ngrok-skip-browser-warning': 'true'
     });
 
@@ -23,15 +24,13 @@ export class GenericApi {
         options: any = { endpoint: environment.backend }
     ): Observable<T>{
 
-        const hdrs = options.headers ? this.appendHeaders(options.headers) : this.headers;
+        const hdrs = options.headers ? this.appendOrReplaceHeaders(options.headers) : this.headers;
         console.log("Estes são os headers para o meu endpoint: [GET] " + uri, hdrs);
 
         return this.http.get<T>(`${options.endpoint }/${ uri }`, { headers: hdrs })
         .pipe(
             catchError(error => {
-                if(error.status === 0){
-                    this.alertService.add("Impossível manter a comunicação com o servidor", LogStatus.ERROR)
-                }
+                this.connectionError(error);
                 return of(null as T)
             })
         )
@@ -40,58 +39,98 @@ export class GenericApi {
     public post<T>(uri: string, body: any,
         options: any = { endpoint: environment.backend }
     ): Observable<T>{
-        let headers: HttpHeaders = this.appendHeaders({
+
+        let localHeaders: HttpHeaders = this.appendOrReplaceHeaders({
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
             'Content-Type': 'text/json',
-            ...options.headers
+            ...(options.headers instanceof HttpHeaders ? this.headersToObject(options.headers) : options.headers)
         });
 
-        console.log("Estes são os headers para o meu endpoint: [POST] " + uri, headers);
-        return this.http.post<T>(`${ options.endpoint }/${ uri }`, body, { headers })
+        console.log("Estes são os headers para o meu endpoint: [POST] " + uri, localHeaders);
+        return this.http.post<T>(`${ options.endpoint }/${ uri }`, body, { headers: localHeaders })
+        .pipe(
+            catchError(error => {
+                this.connectionError(error);
+                return of(null as T)
+            })
+        )
     }
 
     public put<T>(uri: string, body: any,
         options: any = { endpoint: environment.backend }
     ): Observable<T>{
-        let headers: HttpHeaders = this.appendHeaders({
+        let localHeaders: HttpHeaders = this.appendOrReplaceHeaders({
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
             'Content-Type': 'text/json',
-            ...options.headers
+            ...(options.headers instanceof HttpHeaders ? this.headersToObject(options.headers) : options.headers)
         });
 
-        console.log("Estes são os headers para o meu endpoint: [PUT] " + uri, headers);
-        return this.http.put<T>(`${ options.endpoint }/${ uri }`, body, { headers });
+        console.log("Estes são os headers para o meu endpoint: [PUT] " + uri, localHeaders);
+        return this.http.put<T>(`${ options.endpoint }/${ uri }`, body, { headers: localHeaders })
+        .pipe(
+            catchError(error => {
+                this.connectionError(error);
+                return of(null as T)
+            })
+        )
     }
 
     public patch<T>(uri: string, body: any,
         options: any = { endpoint: environment.backend }
     ): Observable<T>{
-        let headers: HttpHeaders = this.appendHeaders({
+        let localHeaders: HttpHeaders = this.appendOrReplaceHeaders({
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
             'Content-Type': 'text/json',
-            ...options.headers
+            ...(options.headers instanceof HttpHeaders ? this.headersToObject(options.headers) : options.headers)
         });
 
-        console.log("Estes são os headers para o meu endpoint: [PUT] " + uri, headers);
-        return this.http.patch<T>(`${ options.endpoint }/${ uri }`, body, { headers });
+        console.log("Estes são os headers para o meu endpoint: [PUT] " + uri, localHeaders);
+        return this.http.patch<T>(`${ options.endpoint }/${ uri }`, body, { headers: localHeaders })
+        .pipe(
+            catchError(error => {
+                this.connectionError(error);
+                return of(null as T)
+            })
+        )
     }
 
     public delete<T>(uri: string, options?: {}): Observable<T>{
-        return this.http.delete<T>(`${ environment.backend }/${ uri }`, options);
+        return this.http.delete<T>(`${ environment.backend }/${ uri }`, options)
+        .pipe(
+            catchError(error => {
+                this.connectionError(error);
+                return of(null as T)
+            })
+        )
     }
 
     get getUserShopId(): string {
         return this.authService.getUserShopId();
     }
 
-    private appendHeaders(headers: { [name: string]: string }): HttpHeaders {        
+    private headersToObject(headers: HttpHeaders): Record<string, string>{
+        const object: Record<string, string> = {};
+        headers.keys().forEach(key => {
+            const value = headers.get(key);
+            if(value !== null) object[key] = value;
+        });
+        return object;
+    }
+
+    private appendOrReplaceHeaders(headers: { [name: string]: string }): HttpHeaders { 
         let hdrs: HttpHeaders = this.headers;
         for(let key in headers){
-            hdrs = hdrs.append(key, headers[key]);
+            hdrs = hdrs.set(key, headers[key]);
         }
         return hdrs;
+    }
+
+    private connectionError(error: any): void{
+        if(error.status === 0){
+            this.alertService.add("Não é possível manter a comunicação com o servidor", LogStatus.ERROR)
+        }
     }
 }

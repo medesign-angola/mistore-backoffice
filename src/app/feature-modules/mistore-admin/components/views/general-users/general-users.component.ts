@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoaderService } from '@core/services/loader/loader.service';
 import { TableComponentExtender } from '@shared/component-classes/table-component.class';
@@ -18,6 +18,8 @@ export class GeneralUsersComponent extends TableComponentExtender {
   
   activatedRoute = inject(ActivatedRoute);
   loaderService = inject(LoaderService);
+
+  isLoading = signal(false);
 
   constructor() {
     super();

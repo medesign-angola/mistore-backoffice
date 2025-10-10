@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PageLoaderIdentifier } from '@shared/Enums/page-loader-id.enum';
 import { LoaderService } from '@core/services/loader/loader.service';
@@ -22,6 +22,8 @@ export class WalletComponent extends TableComponentExtender implements OnInit, T
 
   private walletFacade = inject(WalletFacade);
   private activatedRoute = inject(ActivatedRoute);
+
+  isLoading = signal(false);
 
   constructor() {
     super();

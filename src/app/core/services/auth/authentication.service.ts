@@ -33,6 +33,19 @@ export class AuthenticationService {
         LocalStorage.setItem('_user_token', token);
     }
 
+    public getResetUserPasswordToken(): string {
+        return LocalStorage.getItem('_reset_user_password_token');
+    }
+
+    public setResetUserPasswordToken(token: string): void {
+        LocalStorage.setItem('_reset_user_password_token', token);
+    }
+
+    public cleanResetPasswordToken(): boolean
+    {
+        return this.cleanStorage('_reset_user_password_token');
+    }
+
     public getUserRefreshToken(): string {
         return LocalStorage.getItem('_user_refresh_token');
     }
@@ -128,13 +141,19 @@ export class AuthenticationService {
             '_user_shop_cover',
             '_user_shop_profile',
             '_user_shop_nif',
-            '_user_shop_phone'
+            '_user_shop_phone',
+            '_reset_user_password_token'
         ];
 
         userPrefixes.forEach(prefix => {
             LocalStorage.removeItem(prefix);
         });
 
+        return true;
+    }
+
+    private cleanStorage(prefix: string): boolean{
+        LocalStorage.removeItem(prefix);
         return true;
     }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, input, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { HorizontalBarChart } from '@shared/interfaces/hz-bar-chart.interface';
 
 @Component({
@@ -8,7 +8,8 @@ import { HorizontalBarChart } from '@shared/interfaces/hz-bar-chart.interface';
     standalone: false
 })
 export class HzBarComponent implements OnInit, OnChanges {
-  @Input() chartData!: HorizontalBarChart;
+  chartData = input.required<HorizontalBarChart>();
+  isLoading = input.required<boolean>();
 
   chartHeight = 256; // Altura do gráfico em pixels
   maxValue: number = 0;
@@ -26,7 +27,7 @@ export class HzBarComponent implements OnInit, OnChanges {
   }
   
   calculateMinMaxValues(): void {
-    const allData = this.chartData.series.reduce((acc: string | any[], series: { data: any; }) => acc.concat(series.data), []);
+    const allData = this.chartData().series.reduce((acc: string | any[], series: { data: any; }) => acc.concat(series.data), []);
     this.maxValue = Math.max(...allData);
     this.minValue = Math.min(...allData);
   }

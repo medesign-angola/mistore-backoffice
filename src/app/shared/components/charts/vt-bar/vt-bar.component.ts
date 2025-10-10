@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, input, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { VerticalBarChart } from '@shared/interfaces/vt-bar-chart.interface';
 
 @Component({
@@ -9,7 +9,8 @@ import { VerticalBarChart } from '@shared/interfaces/vt-bar-chart.interface';
 })
 export class VtBarComponent implements OnInit, OnChanges {
 
-  @Input() chartData!: VerticalBarChart;
+  chartData = input.required<VerticalBarChart>();
+  isLoading = input.required<boolean>();
 
   chartHeight = 201; // Altura do gráfico em pixels
   maxValue: number = 0;
@@ -28,7 +29,7 @@ export class VtBarComponent implements OnInit, OnChanges {
   }
   
   calculateMinMaxValues(): void {
-    const allData = this.chartData.series.reduce((acc: string | any[], series: { data: any; }) => acc.concat(series.data), []);
+    const allData = this.chartData().series.reduce((acc: string | any[], series: { data: any; }) => acc.concat(series.data), []);
     this.maxValue = Math.max(...allData);
     this.minValue = Math.min(...allData);
   }

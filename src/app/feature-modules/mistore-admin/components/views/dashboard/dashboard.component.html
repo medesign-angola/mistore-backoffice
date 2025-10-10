@@ -105,7 +105,7 @@
     <div class="wrapper-content mt-10">
         <div class="bar-charts flex justify-between items-stretch">
             <div class="hz-bar p-6 w-full rounded-lg border border-[rgba(233,233,233,0.60)] bg-white">
-                <hz-bar [chartData]="this.horizontalChart" />
+                <hz-bar [chartData]="this.horizontalChart" [isLoading]="isLoading()" />
             </div>
             <!-- <div class="vt-bar p-6 w-full max-w-67.5 rounded-lg border border-[rgba(233,233,233,0.60)] bg-white">
                 <vt-bar [chartData]="this.verticalChart" />

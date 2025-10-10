@@ -31,6 +31,7 @@ import { EditProductComponent } from './components/views/products/edit/edit-prod
 import { ProfileComponent } from './components/views/profile/profile.component';
 import { LogoutFacade } from '@auth/facades/logout.facade';
 import { AuthApi } from '@auth/api/api.service';
+import { DashboardFacade } from './components/views/dashboard/dashboard.facade';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { AuthApi } from '@auth/api/api.service';
   ],
   providers: [
     AuthApi,
-    LogoutFacade
+    LogoutFacade,
+    DashboardFacade
   ],
   imports: [
     SharedModule,

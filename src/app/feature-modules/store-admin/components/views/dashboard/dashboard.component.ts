@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { WidgetPercentageStatusEnum } from '@shared/Enums/widget-percentage-status.enum';
 import { HorizontalBarChart } from '@shared/interfaces/hz-bar-chart.interface';
 import { VerticalBarChart } from '@shared/interfaces/vt-bar-chart.interface';
 import { IWidget } from '@shared/interfaces/widget.interface';
 import { SVGRefEnum } from '@shared/Enums/svg-ref.enum';
+import { DashboardFacade } from './dashboard.facade';
+import { HttpStatusCode } from '@angular/common/http';
+import { generateChartSeriesDatas, generateChartVisitisSeriesDatas, monthsUntilPresent, weeksUntilPresent } from './simulator.service';
 
 @Component({
     selector: 'mi-dashboard',
@@ -11,7 +14,10 @@ import { SVGRefEnum } from '@shared/Enums/svg-ref.enum';
     styleUrl: './dashboard.component.css',
     standalone: false
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+
+  private dashboardFacade = inject(DashboardFacade);
+  isLoading = signal(false);
 
   widgetPercentageStatusEnum = WidgetPercentageStatusEnum;
   widgets: IWidget[] = [
@@ -27,10 +33,10 @@ export class DashboardComponent {
       headerLabel: 'Vendas Concluídas',
       view_data: true,
       data: {
-        main: 1234,
+        main: 0,
         percentageStatus: WidgetPercentageStatusEnum.ENCREASE,
-        percentageValue: 24,
-        footerLabelValue: 283,
+        percentageValue: 0,
+        footerLabelValue: 0,
         footerLabelText: ' essa semana'
       }
     },
@@ -46,11 +52,11 @@ export class DashboardComponent {
       headerLabel: 'Produtos disponíveis',
       view_data: true,
       data: {
-        main: 7453,
+        main: 0,
         percentageStatus: WidgetPercentageStatusEnum.ENCREASE,
-        percentageValue: 24,
-        footerLabelValue: 663,
-        footerLabelText: ' essa semana'
+        percentageValue: 0,
+        footerLabelValue: 0,
+        footerLabelText: ''
       }
     },
     {
@@ -65,118 +71,95 @@ export class DashboardComponent {
       headerLabel: 'Valor arrecadado',
       view_data: true,
       data: {
-        main: 1234,
+        main: 0,
         percentageStatus: WidgetPercentageStatusEnum.DECREASE,
-        percentageValue: 24,
-        footerLabelValue: -40000,
+        percentageValue: 0,
+        footerLabelValue: 0,
         footerLabelText: ' essa semana'
       }
     },
   ];
   
-  horizontalChart: HorizontalBarChart = {
+  horizontalChart: WritableSignal<HorizontalBarChart> = signal({
     details: {
       title: 'Dados por produtos',
       description: 'Análise de estados de produtos por venda',
       chartUnity: 'AOA',
       toolpit: true
     },
-    labels: [
-      "Jan",
-      "Fev",
-      // "Mar",
-      // "Abr",
-      // "Mai",
-      // "Jun",
-      // "Jul",
-      // "Ago",
-      // "Set",
-      // "Out",
-      // "Nov",
-      // "Dez"
-    ],
+    labels: monthsUntilPresent(),
     series: [
       {
-        name: 'Ganhos',
-        color: '#61C554',
-        data: [
-          10123,
-          13345,
-          // 35235,
-          // 25223,
-          // 64213,
-          // 23000,
-          // 50522,
-          // 23409,
-          // 21345,
-          // 53234,
-          // 34563,
-          // 54322
-        ]
+          name: 'Ganhos',
+          color: '#61C554',
+          data: []
       },
       {
-        name: 'Perdas',
-        color: "#ddd",
-        data: [
-          13000,
-          23000,
-          // 45123,
-          // 35342,
-          // 56000,
-          // 23553,
-          // 70000,
-          // 23409,
-          // 21345,
-          // 64234,
-          // 14563,
-          // 14322
-        ]
+          name: 'Perdas',
+          color: "#ddd",
+          data: []
       }
     ]
-  }
+  })
 
-  verticalChart: VerticalBarChart = {
+  verticalChart: WritableSignal<VerticalBarChart> = signal({
     details: {
       title: 'Dados da loja',
       description: 'Número de visitantes da sua loja nesta semana.',
       toolpit: true
     },
-    labels: [
-      "Seg",
-      "Ter",
-      // "Qua",
-      // "Qui",
-      // "Sex",
-      // "Sáb",
-      // "Dom"
-    ],
+    labels: weeksUntilPresent(),
     series: [
       {
-        name: 'Visitas',
-        color: '#F4BF4F',
-        data: [
-          43,
-          23,
-          // 45,
-          // 80,
-          // 30,
-          // 12,
-          // 4
-        ]
+          name: 'Visitas',
+          color: '#F4BF4F',
+          data: []
       },
       {
-        name: 'Abandonos',
-        color: "#ddd",
-        data: [
-          35,
-          3,
-          // 35,
-          // 12,
-          // 85,
-          // 11,
-          // 5
-        ]
-      },
+          name: 'Abandonos',
+          color: "#ddd",
+          data: []
+      }
     ]
+  });
+
+  ngOnInit(): void {
+    this.getStatistics();
+  }
+
+  getStatistics(): void{
+    this.isLoading.set(true);
+
+    this.dashboardFacade.statistics.subscribe({
+      next: response => {
+        if(response.status === HttpStatusCode.Ok){
+          const SALES = 0;
+          const PRODUCTS = 1;
+          const INCOME = 2
+
+          this.widgets[SALES].data = response.data.widget_sales.data;
+          this.widgets[PRODUCTS].data = response.data.widget_products.data;
+          this.widgets[INCOME].data = response.data.widget_income.data;
+
+          this.horizontalChart.update(val => {
+            return {
+              ...val,
+              labels: response.data.chart_sales_per_product.labels,
+              series: response.data.chart_sales_per_product.series
+            }
+          });
+          this.verticalChart.update(val => {
+            return {
+              ...val,
+              labels: response.data.chart_visits_per_week.labels,
+              series: response.data.chart_visits_per_week.series
+            }
+          });
+
+          this.isLoading.set(false);
+        }
+      },
+      error: error => {}
+    })
   }
 }

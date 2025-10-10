@@ -1,45 +1,53 @@
 <div class="w-full h-full flex flex-col justify-around">
-    <div class="chart-header flex justify-between items-start" *ngIf="this.chartData.details">
-        <div class="details-col">
-            <div class="title mb-2">
-                <h1 class="text-black text-lg font-bold">
-                    {{ this.chartData.details.title }}
-                </h1>
-            </div>
-            <div class="description">
-                <p class="max-w-[20.313rem] text-[#aaa] text-base">
-                    {{ this.chartData.details.description }}
-                </p>
-            </div>
-        </div>
-        <div class="labels-presentation max-w-[50%] flex flex-wrap justify-start items-center">
-            @for (label of this.chartData.series; track $index) {
-                <div class="label w-fit flex justify-center items-center gap-2 px-2">
-                    <span
-                    class="w-2 h-2 rounded-full"
-                    [style.backgroundColor]="label.color"
-                    ></span>
-                    <p
-                    class="text-base"
-                    [style.color]="'#aaa'"
-                    >{{ label.name }}</p>
+    @if (this.chartData().details) {
+        <div class="chart-header flex justify-between items-start">
+            <div class="details-col">
+                <div class="title mb-2">
+                    <h1 class="text-black text-lg font-bold">
+                        {{ this.chartData().details!.title }}
+                    </h1>
                 </div>
-            }
+                <div class="description">
+                    <p class="max-w-[20.313rem] text-[#aaa] text-base">
+                        {{ this.chartData().details!.description }}
+                    </p>
+                </div>
+            </div>
+            <div class="labels-presentation max-w-[50%] flex flex-wrap justify-start items-center">
+                @for (label of this.chartData().series; track $index) {
+                    <div class="label w-fit flex justify-center items-center gap-2 px-2">
+                        <span
+                        class="w-2 h-2 rounded-full"
+                        [style.backgroundColor]="label.color"
+                        ></span>
+                        <p
+                        class="text-base"
+                        [style.color]="'#aaa'"
+                        >{{ label.name }}</p>
+                    </div>
+                }
+            </div>
         </div>
-    </div>
+    }
     <div class="chart-canvas relative mt-8 max-h-68 flex justify-start gap-4 items-start">
 
 
-        <div class="y-axys">
-            <div class="intervals min-w-[50px] flex flex-col items-start justify-start gap-y-6">
-                @for (item of this.yAxisIntervals; track $index) {
-                    <div class="item text-sm text-[#aaa]"
-                    >
-                    <!-- [ngClass]="(item === '0') ? 'opacity-0' : 'opacity-1'" -->
-                        <span class="text-xs! text-[rgba(170,170,170,0.40)]!">
-                            {{ this.chartData.details?.chartUnity }}
-                        </span>
-                        {{ item }}
+        <div class="y-axys h-full">
+            <div class="intervals min-w-[50px] flex flex-col h-full items-start justify-start gap-y-6">
+                @if (!isLoading()) {
+                    @for (item of this.yAxisIntervals; track $index) {
+                        <div class="item text-sm text-[#aaa]"
+                        >
+                        <!-- [ngClass]="(item === '0') ? 'opacity-0' : 'opacity-1'" -->
+                            <span class="text-xs! text-[rgba(170,170,170,0.40)]!">
+                                {{ this.chartData().details?.chartUnity }}
+                            </span>
+                            {{ item }}
+                        </div>
+                    }
+                } @else {
+                    <div class="spinner w-[16px] h-full flex justify-center items-center">
+                        <mi-spinner class="" [color]="'black'"></mi-spinner>
                     </div>
                 }
             </div>
@@ -57,32 +65,32 @@
             </div>
             <div class="bars-cover absolute left-0 top-0 w-full h-full">
                 <div class="top-bars relative w-full h-full gap-3 flex justify-around items-end">
-                    @for (label of this.chartData.labels; track labelIndex; let labelIndex = $index) {
+                    @for (label of this.chartData().labels; track labelIndex; let labelIndex = $index) {
                         <div class="bars-container flex flex-col h-[calc(100%-10px)]"
                         [ngClass]="{
-                            'w-[30%]': this.chartData.labels.length < 4,
-                            'w-[20%]': this.chartData.labels.length == 4,
-                            'w-[10%]': this.chartData.labels.length > 4 && this.chartData.labels.length < 8,
-                            'w-[8%]': this.chartData.labels.length >= 8 && this.chartData.labels.length <= 9,
-                            'w-10': this.chartData.labels.length >= 10,
+                            'w-[30%]': this.chartData().labels.length < 4,
+                            'w-[20%]': this.chartData().labels.length == 4,
+                            'w-[10%]': this.chartData().labels.length > 4 && this.chartData().labels.length < 8,
+                            'w-[8%]': this.chartData().labels.length >= 8 && this.chartData().labels.length <= 9,
+                            'w-10': this.chartData().labels.length >= 10,
                         }"
                         >
                             <div class="bars flex items-end w-full h-full">
-                                @for (serie of this.chartData.series; track serieIndex; let serieIndex = $index) {
-                                    <div class="bar w-full rounded-t relative"
+                                @for (serie of this.chartData().series; track serieIndex; let serieIndex = $index) {
+                                    <div class="bar w-full rounded-t h-full relative duration-[1s]"
                                     [style.backgroundColor]="serie.color"
-                                    [style.height.%]="getPercentage(this.chartData.series[serieIndex].data[labelIndex])"
+                                    [style.maxHeight.%]="(!(this.chartData().series[serieIndex].data.length > 0)) ? 0 : getPercentage(this.chartData().series[serieIndex].data[labelIndex])"
                                     >
-                                        @if(this.chartData.details?.toolpit){
+                                        @if(this.chartData().details?.toolpit){
                                             <div class="toolpit text-sm absolute z-10 w-max min-w-[150px] -top-[70px] left-[50%] -translate-x-[50%] bg-black text-white p-2 rounded">
                                                 <div class="top mb-2">
-                                                    {{ this.chartData.labels[labelIndex] }}
+                                                    {{ this.chartData().labels[labelIndex] }}
                                                 </div>
                                                 <div class="bottom flex gap-2 justify-start items-center">
                                                     <span class="w-3 h-3 rounded-full"
                                                     [style.backgroundColor]="serie.color"
                                                     ></span>
-                                                    {{ serie.name }}: {{ this.chartData.series[serieIndex].data[labelIndex] | number | replaceBy }} {{ this.chartData.details?.chartUnity }}
+                                                    {{ serie.name }}: {{ this.chartData().series[serieIndex].data[labelIndex] | number | replaceBy }} {{ this.chartData().details?.chartUnity }}
                                                 </div>
                                             </div>
                                         }

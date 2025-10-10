@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { SVGRefEnum } from '@shared/Enums/svg-ref.enum';
 import { WidgetPercentageStatusEnum } from '@shared/Enums/widget-percentage-status.enum';
 import { HorizontalBarChart } from '@shared/interfaces/hz-bar-chart.interface';
@@ -12,6 +12,7 @@ import { IWidget } from '@shared/interfaces/widget.interface';
     standalone: false
 })
 export class DashboardComponent {
+  isLoading = signal(false);
   widgetPercentageStatusEnum = WidgetPercentageStatusEnum;
   widgets: IWidget[] = [
     {

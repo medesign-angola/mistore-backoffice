@@ -4,6 +4,8 @@ import { AuthComponent } from './components/containers/auth.component';
 import { SignInComponent } from './components/views/sign-in/sign-in.component';
 import { SignUpComponent } from './components/views/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/views/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/views/reset-password/reset-password.component';
+import { ResetPasswordGuard } from '@core/guards/reset-password-guard.guard';
 
 const routes: Routes = [
   {
@@ -30,6 +32,17 @@ const routes: Routes = [
         title: 'Esqueci a minha senha',
         component: ForgotPasswordComponent
       },
+      {
+        path: 'reset-password/:id/:token',
+        title: 'Recuperar a minha senha',
+        canActivate: [ ResetPasswordGuard ],
+        component: ResetPasswordComponent
+      },
+      {
+        path: '**',
+        redirectTo: '/auth/sign-in',
+        pathMatch: 'full'
+      }
     ]
   }
 ];

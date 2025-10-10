@@ -1,6 +1,7 @@
-import { HttpStatusCode } from "@angular/common/http";
+import { HttpHeaders, HttpStatusCode } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { AuthModule } from "@auth/auth.module";
+import { PasswordReset } from "@core/base-models/auth/PasswordReset";
 import { UserLogin } from "@core/base-models/auth/UserLogin";
 import { UserInterface } from "@core/base-models/base/user.model";
 import { UUIDGenerator } from "@core/services/uuid-generator.service";
@@ -8,6 +9,9 @@ import { delay, Observable, of } from "rxjs";
 
 @Injectable({ providedIn: 'any' })
 export class Simulator{
+    private MY_SIMULATED_PASS = 'cngvP';
+    private MY_SIMULATED_RESET_PASSWORD_TOKEN = 'VtXcoymiZM05eMCR9QrbM7Z5AWEuI5W55Gpz5GfdbHioL7UTtCTzlkIY3eirRDw8';
+    
     private users: UserInterface[] = [
         {
             Id: UUIDGenerator.generate(),
@@ -30,7 +34,7 @@ export class Simulator{
     ];
     
     login(login: UserLogin): Observable<any>{
-        const user = this.users.find(u => u.Email === login.email && login.password === 'cngvP');
+        const user = this.users.find(u => u.Email === login.email && login.password === this.MY_SIMULATED_PASS);
         if(user){
             return of({
                 status: HttpStatusCode.Ok,
@@ -45,6 +49,26 @@ export class Simulator{
             status: HttpStatusCode.Unauthorized,
             data: { message: 'Credenciais inválidas.' }
         }).pipe(delay(2000));
+    }
+
+    resetPassword(data: PasswordReset, options: any): Observable<any>{
+        this.MY_SIMULATED_PASS = data.password;
+
+        const headers = options.headers as HttpHeaders;
+        const success = {
+            status: HttpStatusCode.Ok,
+            message: "password redifinida com êxito."
+        }
+        const failed = {
+            status: HttpStatusCode.Forbidden,
+            message: "invalid token."
+        };
+
+        const token = headers.get('authorization')?.split(" ")[1];
+
+        return of(
+            (token === this.MY_SIMULATED_RESET_PASSWORD_TOKEN) ? success : failed
+        ).pipe(delay(2000));
     }
 
     logout(): Observable<any>{

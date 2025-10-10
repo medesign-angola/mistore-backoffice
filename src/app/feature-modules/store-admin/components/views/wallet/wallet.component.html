@@ -103,7 +103,7 @@
     <div class="wrapper-content mt-10">
         <div class="chart-section flex justify-between items-stretch">
             <div class="hz-bar p-6 w-full max-w-209.5 rounded-lg border border-[rgba(233,233,233,0.60)] bg-white">
-                <hz-bar [chartData]="this.horizontalChart" />
+                <hz-bar [chartData]="this.horizontalChart" [isLoading]="isLoading()" />
             </div>
             <div class="ad-panel max-w-72.5 w-full">
                 <mi-ads class="w-full h-full">

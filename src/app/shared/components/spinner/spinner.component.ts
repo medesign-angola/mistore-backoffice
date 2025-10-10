@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
     selector: 'mi-spinner',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
     standalone: false
 })
 export class SpinnerComponent {
-
+    color = input<string>('white');
 }
