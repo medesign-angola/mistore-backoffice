@@ -1,9 +1,10 @@
 import { inject, Injectable } from "@angular/core";
 import { DashboardService } from "./dashboard.api.service";
 import { Observable } from "rxjs";
+import { DashboardComponent } from "./dashboard.component";
 
 Injectable({
-    providedIn: 'any'
+    providedIn: DashboardComponent
 })
 export class DashboardFacade{
     

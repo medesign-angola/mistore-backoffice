@@ -1,9 +1,10 @@
 import { HttpStatusCode } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { delay, Observable, of } from "rxjs";
+import { DashboardService } from "./dashboard.api.service";
 
 @Injectable({
-    providedIn: 'any'
+    providedIn: DashboardService
 })
 export class DashboardSimulator{
 

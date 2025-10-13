@@ -3,9 +3,10 @@ import { GenericApi } from "@core/api/generic.api.service";
 import { map, Observable } from "rxjs";
 import { DashboardSimulator } from "./simulator.service";
 import { HttpStatusCode } from "@angular/common/http";
+import { DashboardFacade } from "./dashboard.facade";
 
 @Injectable({
-    providedIn: 'any'
+    providedIn: DashboardFacade
 })
 export class DashboardService{
     private api = inject(GenericApi);
