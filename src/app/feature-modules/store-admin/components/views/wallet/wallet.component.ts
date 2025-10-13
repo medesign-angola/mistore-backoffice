@@ -1,8 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild, inject, signal } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, WritableSignal, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PageLoaderIdentifier } from '@shared/Enums/page-loader-id.enum';
 import { LoaderService } from '@core/services/loader/loader.service';
-import { WalletFacade } from '@store/facades/wallet.facade';
+import { WalletFacade } from '@store/components/views/wallet/wallet.facade';
 import { IProduct } from '@store/models/product.model';
 import { WALLET_PRODUCTS_LIMIT } from '@shared/constants/data-limit.const';
 import { HorizontalBarChart } from '@shared/interfaces/hz-bar-chart.interface';
@@ -11,6 +11,8 @@ import { TableComponentInterface } from '@shared/component-interfaces/table-comp
 import { IWidget } from '@shared/interfaces/widget.interface';
 import { SVGRefEnum } from '@shared/Enums/svg-ref.enum';
 import { WidgetPercentageStatusEnum } from '@shared/Enums/widget-percentage-status.enum';
+import { monthsUntilPresent } from '../dashboard/simulator.service';
+import { HttpStatusCode } from '@angular/common/http';
 
 @Component({
     selector: 'mi-wallet',
@@ -24,6 +26,11 @@ export class WalletComponent extends TableComponentExtender implements OnInit, T
   private activatedRoute = inject(ActivatedRoute);
 
   isLoading = signal(false);
+  
+  tableHeader: string[] = ['Produto', 'Categoria', 'Quantidade', 'Data de Registro', 'Preço', 'Valor arrecadado'];
+  tableProducts: IProduct[] = [];
+
+  loaderService = inject(LoaderService);
 
   constructor() {
     super();
@@ -42,25 +49,6 @@ export class WalletComponent extends TableComponentExtender implements OnInit, T
 
   widgetPercentageStatusEnum = WidgetPercentageStatusEnum;
   widgets: IWidget[] = [
-    // {
-    //   backgroundColor: 'black',
-    //   ctaDotsColor: 'white',
-    //   mainTextColor: 'white',
-    //   footerTextColor: '#858585',
-    //   svgIcon: {
-    //     ref: SVGRefEnum.SHOPPING_CART,
-    //     color: 'white'
-    //   },
-    //   headerLabel: 'Total de Produtos',
-    //   view_data: true,
-    //   data: {
-    //     main: 263000,
-    //     percentageStatus: WidgetPercentageStatusEnum.ENCREASE,
-    //     percentageValue: 68,
-    //     footerLabelValue: 635,
-    //     footerLabelText: ' produtos adicionados'
-    //   }
-    // },
     {
       backgroundColor: 'white',
       ctaDotsColor: '#858585',
@@ -73,10 +61,10 @@ export class WalletComponent extends TableComponentExtender implements OnInit, T
       headerLabel: 'Vendas Concluídas',
       view_data: true,
       data: {
-        main: 63000,
+        main: 0,
         percentageStatus: WidgetPercentageStatusEnum.ENCREASE,
-        percentageValue: 24,
-        footerLabelValue: 283,
+        percentageValue: 0,
+        footerLabelValue: 0,
         footerLabelText: ' esse mês'
       }
     },
@@ -92,80 +80,36 @@ export class WalletComponent extends TableComponentExtender implements OnInit, T
       headerLabel: 'Valor total na carteira',
       view_data: true,
       data: {
-        main: 683000,
+        main: 0,
         percentageStatus: WidgetPercentageStatusEnum.ENCREASE,
-        percentageValue: 68,
-        footerLabelValue: 100000,
+        percentageValue: 0,
+        footerLabelValue: 0,
         footerLabelText: ' esse ano'
       }
     },
   ];
 
-  tableHeader: string[] = ['Produto', 'Categoria', 'Quantidade', 'Data de Registro', 'Preço', 'Valor arrecadado'];
-  tableProducts: IProduct[] = [];
-
-  loaderService = inject(LoaderService);
-
-  horizontalChart: HorizontalBarChart = {
+  horizontalChart: WritableSignal<HorizontalBarChart> = signal({
     details: {
       title: 'Dados por produtos',
       description: 'Análise de estados de produtos por venda',
       chartUnity: 'AOA',
       toolpit: true
     },
-    labels: [
-      "Jan",
-      "Fev",
-      // "Mar",
-      // "Abr",
-      // "Mai",
-      // "Jun",
-      // "Jul",
-      // "Ago",
-      // "Set",
-      // "Out",
-      // "Nov",
-      // "Dez"
-    ],
+    labels: monthsUntilPresent(),
     series: [
       {
         name: 'Ganhos',
         color: '#61C554',
-        data: [
-          10123,
-          13345,
-          // 35235,
-          // 25223,
-          // 64213,
-          // 23000,
-          // 50522,
-          // 23409,
-          // 21345,
-          // 53234,
-          // 34563,
-          // 54322
-        ]
+        data: []
       },
       {
         name: 'Perdas',
         color: "#ddd",
-        data: [
-          13000,
-          23000,
-          // 45123,
-          // 35342,
-          // 56000,
-          // 23553,
-          // 70000,
-          // 23409,
-          // 21345,
-          // 64234,
-          // 14563,
-          // 14322
-        ]
+        data: []
       }
     ]
-  }
+  })
 
   pageLoaderIdentifier = PageLoaderIdentifier;
 
@@ -176,6 +120,7 @@ export class WalletComponent extends TableComponentExtender implements OnInit, T
       this.getProducts(pageParam, this.perPage);
     });
 
+    this.getStatistics();
     this.generatePlaceholders();
   }
 
@@ -199,9 +144,36 @@ export class WalletComponent extends TableComponentExtender implements OnInit, T
       }
   }
 
+  getStatistics(): void{
+    this.isLoading.set(true);
+
+    this.walletFacade.statistics.subscribe({
+      next: response => {
+        if(response.status === HttpStatusCode.Ok){
+          const SALES = 0;
+          const IN_WALLET = 1;
+
+          this.widgets[SALES].data = response.data.widget_sales.data;
+          this.widgets[IN_WALLET].data = response.data.widget_in_wallet.data;
+
+          this.horizontalChart.update(val => {
+            return {
+              ...val,
+              labels: response.data.chart_sales_per_product.labels,
+              series: response.data.chart_sales_per_product.series
+            }
+          });
+
+          this.isLoading.set(false);
+        }
+      },
+      error: error => {}
+    })
+  }
+
   getProducts(page: number, limit: number){
     this.loaderService.setLoadingStatus(this.pageLoaderIdentifier.WALLET_PRODUCTS, true);
-    this.walletFacade.walletProducts(page, limit).subscribe({
+    this.walletFacade.products(page, limit).subscribe({
       next: (incoming: IProduct[]) => {
         this.tableProducts = incoming;
         if(this.tableProducts.length > 0){

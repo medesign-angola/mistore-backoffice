@@ -1,4 +1,3 @@
-import { HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { GenericApi } from "@core/api/generic.api.service";
 import { environment } from "@env/environment.development";
@@ -13,15 +12,6 @@ import { map, Observable } from "rxjs";
 export class ProductApiService{
     
     private api = inject(GenericApi);
-
-    getWalletProducts(page: number = 1, limit_per_page: number): Observable<IProduct[]>{
-        return this.api.get<IProduct[]>(`api/products/GET-ListOfProductsClient?id=${ this.api.getUserShopId }`)
-        .pipe(
-            map((incomingProducts: any) => {
-                return Paginator.paginate(Transformer.products(incomingProducts ?? []), page, limit_per_page);
-            })
-        );
-    }
 
     getPromotionProducts(page: number = 1, limit_per_page: number): Observable<IProduct[]>{
         return this.api.get<IProduct[]>(`api/products`)

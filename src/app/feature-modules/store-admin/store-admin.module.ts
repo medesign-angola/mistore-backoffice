@@ -31,7 +31,13 @@ import { EditProductComponent } from './components/views/products/edit/edit-prod
 import { ProfileComponent } from './components/views/profile/profile.component';
 import { LogoutFacade } from '@auth/facades/logout.facade';
 import { AuthApi } from '@auth/api/api.service';
+<<<<<<< HEAD
+=======
+import { DashboardFacade } from './components/views/dashboard/dashboard.facade';
+import { loadWalletProviders } from './components/views/wallet/providers';
+>>>>>>> da9a18ad42f8b07e9c58bcea0aa6d7b1b1c7cf77
 import { loadDashboardProviders } from './components/views/dashboard/providers';
+import { loadWalletProviders } from './components/views/wallet/providers';
 
 @NgModule({
   declarations: [
@@ -65,6 +71,7 @@ import { loadDashboardProviders } from './components/views/dashboard/providers';
     AuthApi,
     LogoutFacade,
     loadDashboardProviders(),
+    loadWalletProviders(),
   ],
   imports: [
     SharedModule,
