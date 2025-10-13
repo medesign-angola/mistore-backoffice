@@ -13,19 +13,6 @@ export class ProductApiService{
     
     private api = inject(GenericApi);
 
-    getPromotionProducts(page: number = 1, limit_per_page: number): Observable<IProduct[]>{
-        return this.api.get<IProduct[]>(`api/products`)
-        .pipe(
-            map((incoming: any) => incoming ?? []),
-            map((filteredProducts: IProduct[]) => {
-                return filteredProducts.filter(product => product.promotion_price > 0) ?? []
-            }),
-            map((incomingProducts: IProduct[]) => {
-                return Paginator.paginate(incomingProducts, page, limit_per_page);
-            }),
-        );
-    }
-
     getFavoritesProducts(page: number = 1, limit_per_page: number): Observable<IProductResponse>{
         return this.api.get<IProductResponse>(`${ environment.backend }/api/products/GET-ListOfProductsClient?id=${ this.api.getUserShopId }&page=${ page }`)
         .pipe(

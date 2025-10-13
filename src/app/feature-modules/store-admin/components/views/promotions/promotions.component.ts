@@ -10,8 +10,9 @@ import { LoaderService } from '@core/services/loader/loader.service';
 import { SVGRefEnum } from '@shared/Enums/svg-ref.enum';
 import { PRODUCTS_LIMIT } from '@shared/constants/data-limit.const';
 import { ProductStatusEnum } from '@store/enums/products-status.enum';
-import { ProductFacade } from '@store/facades/products/products.facade';
 import { IProduct } from '@store/models/product.model';
+import { PromotionFacade } from './promotion.facade';
+import { HttpStatusCode } from '@angular/common/http';
 
 @Component({
     selector: 'mi-promotions',
@@ -23,7 +24,7 @@ export class PromotionsComponent extends TableComponentExtender implements OnIni
   
   activatedRoute = inject(ActivatedRoute);
   loaderService = inject(LoaderService);
-  productFacade = inject(ProductFacade);
+  promotionFacade = inject(PromotionFacade);
 
   constructor(){
     super();
@@ -54,10 +55,10 @@ export class PromotionsComponent extends TableComponentExtender implements OnIni
       headerLabel: 'Produtos em Promoção',
       view_data: true,
       data: {
-        main: 263000,
+        main: 0,
         percentageStatus: WidgetPercentageStatusEnum.ENCREASE,
-        percentageValue: 68,
-        footerLabelValue: 100,
+        percentageValue: 0,
+        footerLabelValue: 0,
         footerLabelText: ' produtos adicionados'
       }
     },
@@ -73,10 +74,10 @@ export class PromotionsComponent extends TableComponentExtender implements OnIni
       headerLabel: 'Produtos Vendidos',
       view_data: true,
       data: {
-        main: 298,
+        main: 0,
         percentageStatus: WidgetPercentageStatusEnum.ENCREASE,
-        percentageValue: 24,
-        footerLabelValue: 283,
+        percentageValue: 0,
+        footerLabelValue: 0,
         footerLabelText: ' esse mês'
       }
     },
@@ -97,6 +98,7 @@ export class PromotionsComponent extends TableComponentExtender implements OnIni
       this.getProducts(pageParam, this.perPage);
     });
 
+    this.getStatistics();
     this.generatePlaceholders();
   }
 
@@ -118,12 +120,27 @@ export class PromotionsComponent extends TableComponentExtender implements OnIni
           });
       }
   }
+
+  getStatistics(): void{
+    this.promotionFacade.statistics.subscribe({
+      next: response => {
+        if(response.status === HttpStatusCode.Ok){
+          const PRODUCTS = 0;
+          const PRODUCTS_SOLD = 1;
+
+          this.widgets[PRODUCTS].data = response.data.widget_products_count.data;
+          this.widgets[PRODUCTS_SOLD].data = response.data.widget_products_sold.data;
+
+        }
+      },
+      error: error => {}
+    })
+  }
   
   // End of Table Component Interface Requirements
-
   getProducts(page: number, limit: number){
     this.loaderService.setLoadingStatus(this.pageLoaderIdentifier.PRODUCTS, true);
-    this.productFacade.promotionProducts(page, limit).subscribe({
+    this.promotionFacade.products(page, limit).subscribe({
       next: (incoming: IProduct[]) => {
         this.tableProducts = incoming;
         if(this.tableProducts.length > 0){

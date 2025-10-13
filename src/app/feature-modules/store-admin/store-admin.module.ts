@@ -33,6 +33,7 @@ import { LogoutFacade } from '@auth/facades/logout.facade';
 import { AuthApi } from '@auth/api/api.service';
 import { loadDashboardProviders } from './components/views/dashboard/providers';
 import { loadWalletProviders } from './components/views/wallet/providers';
+import { loadPromotionProviders } from './components/views/promotions/providers';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { loadWalletProviders } from './components/views/wallet/providers';
     LogoutFacade,
     loadDashboardProviders(),
     loadWalletProviders(),
+    loadPromotionProviders(),
   ],
   imports: [
     SharedModule,
