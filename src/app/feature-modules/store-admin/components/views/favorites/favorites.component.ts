@@ -5,13 +5,13 @@ import { WidgetPercentageStatusEnum } from '@shared/Enums/widget-percentage-stat
 import { TableComponentExtender } from '@shared/component-classes/table-component.class';
 import { TableComponentInterface } from '@shared/component-interfaces/table-component.interface';
 import { IWidget } from '@shared/interfaces/widget.interface';
-import { PRODUCTS } from '@store/mocks/products.mock';
 import { LoaderService } from '@core/services/loader/loader.service';
 import { SVGRefEnum } from '@shared/Enums/svg-ref.enum';
 import { PRODUCTS_LIMIT } from '@shared/constants/data-limit.const';
 import { ProductStatusEnum } from '@store/enums/products-status.enum';
-import { ProductFacade } from '@store/facades/products/products.facade';
 import { IProduct, IProductResponse } from '@store/models/product.model';
+import { HttpStatusCode } from '@angular/common/http';
+import { FavoriteFacade } from './favorites.facade';
 
 @Component({
     selector: 'mi-favorites',
@@ -23,7 +23,7 @@ export class FavoritesComponent extends TableComponentExtender implements OnInit
   
   activatedRoute = inject(ActivatedRoute);
   loaderService = inject(LoaderService);
-  productFacade = inject(ProductFacade);
+  favoriteFacade = inject(FavoriteFacade);
 
   constructor(){
     super();
@@ -54,10 +54,10 @@ export class FavoritesComponent extends TableComponentExtender implements OnInit
       headerLabel: 'Total de produtos favoritos',
       view_data: true,
       data: {
-        main: 924000,
+        main: 0,
         percentageStatus: WidgetPercentageStatusEnum.ENCREASE,
-        percentageValue: 68,
-        footerLabelValue: 100,
+        percentageValue: 0,
+        footerLabelValue: 0,
         footerLabelText: ' produtos essa semana'
       }
     },
@@ -73,10 +73,10 @@ export class FavoritesComponent extends TableComponentExtender implements OnInit
       headerLabel: 'Produtos removidos',
       view_data: true,
       data: {
-        main: 743,
+        main: 0,
         percentageStatus: WidgetPercentageStatusEnum.DECREASE,
-        percentageValue: 78,
-        footerLabelValue: 100,
+        percentageValue: 0,
+        footerLabelValue: 0,
         footerLabelText: ' essa semana'
       }
     },
@@ -97,6 +97,7 @@ export class FavoritesComponent extends TableComponentExtender implements OnInit
       this.getProducts(pageParam, this.perPage);
     });
 
+    this.getStatistics();
     this.generatePlaceholders();
   }
 
@@ -121,9 +122,25 @@ export class FavoritesComponent extends TableComponentExtender implements OnInit
   
   // End of Table Component Interface Requirements
 
+  getStatistics(): void{
+    this.favoriteFacade.statistics.subscribe({
+      next: response => {
+        if(response.status === HttpStatusCode.Ok){
+          const PRODUCTS = 0;
+          const PRODUCTS_SOLD = 1;
+
+          this.widgets[PRODUCTS].data = response.data.widget_products_count.data;
+          this.widgets[PRODUCTS_SOLD].data = response.data.widget_products_removed.data;
+
+        }
+      },
+      error: error => {}
+    })
+  }
+
   getProducts(page: number, limit: number){
     this.loaderService.setLoadingStatus(this.pageLoaderIdentifier.PRODUCTS, true);
-    this.productFacade.favoritesProducts(page, limit).subscribe({
+    this.favoriteFacade.products(page, limit).subscribe({
       next: (incoming: IProductResponse) => {
         this.tableProducts = incoming.products;
         if(this.tableProducts.length > 0){

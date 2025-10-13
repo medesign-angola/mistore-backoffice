@@ -34,6 +34,7 @@ import { AuthApi } from '@auth/api/api.service';
 import { loadDashboardProviders } from './components/views/dashboard/providers';
 import { loadWalletProviders } from './components/views/wallet/providers';
 import { loadPromotionProviders } from './components/views/promotions/providers';
+import { loadFavoriteProviders } from './components/views/favorites/providers';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { loadPromotionProviders } from './components/views/promotions/providers'
     loadDashboardProviders(),
     loadWalletProviders(),
     loadPromotionProviders(),
+    loadFavoriteProviders()
   ],
   imports: [
     SharedModule,

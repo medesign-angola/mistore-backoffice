@@ -33,14 +33,6 @@ export class ProductFacade{
         );
     }
 
-    promotionProducts(page: number, limit: number): Observable<IProduct[]>{
-        return this.api.getPromotionProducts(page, limit);
-    }
-
-    favoritesProducts(page: number, limit: number): Observable<IProductResponse>{
-        return this.api.getFavoritesProducts(page, limit);
-    }
-
     editProduct(product: any, page: number): Observable<any>{
         // return this.api.editProduct(product);
 

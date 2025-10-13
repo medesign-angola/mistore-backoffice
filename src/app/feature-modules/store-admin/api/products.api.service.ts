@@ -1,7 +1,5 @@
 import { inject, Injectable } from "@angular/core";
 import { GenericApi } from "@core/api/generic.api.service";
-import { environment } from "@env/environment.development";
-import { Paginator } from "@shared/component-classes/pagination/paginator.class";
 import { Transformer } from "@shared/component-classes/transformation/transformer.class";
 import { IProduct, IProductResponse } from "@store/models/product.model";
 import { map, Observable } from "rxjs";
@@ -12,24 +10,6 @@ import { map, Observable } from "rxjs";
 export class ProductApiService{
     
     private api = inject(GenericApi);
-
-    getFavoritesProducts(page: number = 1, limit_per_page: number): Observable<IProductResponse>{
-        return this.api.get<IProductResponse>(`${ environment.backend }/api/products/GET-ListOfProductsClient?id=${ this.api.getUserShopId }&page=${ page }`)
-        .pipe(
-            map((incoming: any) => 
-                ({
-                    total: (incoming) ? incoming.totalProductCount : 0,
-                    products: Transformer.products((incoming) ? incoming.products : [])
-                })
-            ),
-            map((filteredProducts: IProductResponse) => {
-                return {
-                    ...filteredProducts,
-                    products: filteredProducts.products.filter(product => product.favoritesCount && product.favoritesCount > 0) ?? []
-                }
-            })
-        );
-    }
 
     getProducts(page: number = 1, limit_per_page: number): Observable<IProductResponse>{
         return this.api.get<IProductResponse>(`api/products/getallproductsbyshop?id=${ this.api.getUserShopId }&page=${ page }&page_size=${ limit_per_page }&sortColumn=create_date&order=desc`)
