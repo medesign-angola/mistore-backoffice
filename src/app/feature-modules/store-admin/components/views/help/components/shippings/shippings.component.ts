@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
     selector: 'mi-shippings-tab-content',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
     standalone: false
 })
 export class ShippingsComponent {
-
+    contents = input<any[]>([]);
+    isLoading = input<boolean>(false);
 }

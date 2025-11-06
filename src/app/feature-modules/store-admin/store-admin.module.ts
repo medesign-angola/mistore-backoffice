@@ -13,12 +13,12 @@ import { MessagesComponent } from '@store/components/views/messages/messages.com
 import { HelpComponent } from '@store/components/views/help/help.component';
 import { CreateProductComponent } from '@store/components/views/products/create/create-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MyAccountComponent } from './components/views/help/childrens/my-account/my-account.component';
-import { RequestsComponent } from './components/views/help/childrens/requests/requests.component';
-import { PaymentsComponent } from './components/views/help/childrens/payments/payments.component';
-import { ShippingsComponent } from './components/views/help/childrens/shippings/shippings.component';
-import { DevolutionComponent } from './components/views/help/childrens/devolution/devolution.component';
-import { OthersComponent } from './components/views/help/childrens/others/others.component';
+import { MyAccountComponent } from './components/views/help/components/my-account/my-account.component';
+import { RequestsComponent } from './components/views/help/components/requests/requests.component';
+import { PaymentsComponent } from './components/views/help/components/payments/payments.component';
+import { ShippingsComponent } from './components/views/help/components/shippings/shippings.component';
+import { DevolutionComponent } from './components/views/help/components/devolution/devolution.component';
+import { OthersComponent } from './components/views/help/components/others/others.component';
 import { LooksComponent } from './components/views/looks/index/looks.component';
 import { CreateLookComponent } from './components/views/looks/create/create-look.component';
 import { EditLookComponent } from './components/views/looks/edit/edit-look.component';
@@ -35,6 +35,7 @@ import { loadDashboardProviders } from './components/views/dashboard/providers';
 import { loadWalletProviders } from './components/views/wallet/providers';
 import { loadPromotionProviders } from './components/views/promotions/providers';
 import { loadFavoriteProviders } from './components/views/favorites/providers';
+import { loadHelpProviders } from './components/views/help/providers';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { loadFavoriteProviders } from './components/views/favorites/providers';
     loadDashboardProviders(),
     loadWalletProviders(),
     loadPromotionProviders(),
-    loadFavoriteProviders()
+    loadFavoriteProviders(),
+    loadHelpProviders()
   ],
   imports: [
     SharedModule,

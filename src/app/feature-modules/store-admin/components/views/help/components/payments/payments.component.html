@@ -1,0 +1,44 @@
+<div class="tab-content-wrapper">
+    <div class="content-body">
+        <div class="help-boxes flex flex-wrap gap-12 justify-start items-start">
+
+            @if (!isLoading()) {
+
+                @for (content of contents(); track $index) {
+                    <div class="box max-w-[253px]">
+                        <div class="box-title flex gap-x-2 justify-start items-start">
+                            <svg class="mt-1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_1_15402)">
+                                <path d="M6.06004 6.00016C6.21678 5.55461 6.52614 5.1789 6.93334 4.93958C7.34055 4.70027 7.8193 4.61279 8.28483 4.69264C8.75035 4.77249 9.17259 5.01451 9.47676 5.37585C9.78093 5.73718 9.94741 6.19451 9.94671 6.66683C9.94671 8.00016 7.94671 8.66683 7.94671 8.66683M8.00004 11.3335H8.00671M14.6667 8.00016C14.6667 11.6821 11.6819 14.6668 8.00004 14.6668C4.31814 14.6668 1.33337 11.6821 1.33337 8.00016C1.33337 4.31826 4.31814 1.3335 8.00004 1.3335C11.6819 1.3335 14.6667 4.31826 14.6667 8.00016Z" stroke="black" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_1_15402">
+                                <rect width="16" height="16" fill="white"/>
+                                </clipPath>
+                                </defs>
+                            </svg>
+                            <p class="text-base font-medium">
+                                {{ content.question }}
+                            </p>
+                        </div>
+                        <div class="box-content mt-4 pl-5">
+                            <p class=" text-[#999] text-sm limited-text four-lines">
+                                {{ content.answer }}
+                            </p>
+                            <div class="expand-colapse mt-3">
+                                <button class="bg-transparent underline text-black p-0 text-sm font-semibold">Continuar a ler</button>
+                            </div>
+                        </div>
+                    </div>
+                } @empty {
+                    Sem dados
+                }
+
+            } @else {
+                A carregar...
+            }
+
+        </div>
+    </div>
+
+</div>

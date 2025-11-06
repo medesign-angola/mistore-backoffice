@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 
 @Component({
     selector: 'mi-requests-tab-content',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
     standalone: false
 })
 export class RequestsComponent {
-
+    contents = input<any[]>([]);
+    isLoading = input<boolean>(false);
 }

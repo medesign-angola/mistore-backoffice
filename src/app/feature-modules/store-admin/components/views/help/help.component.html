@@ -120,25 +120,47 @@
     </div>
     <div class="wrapper-tab-content">
         
-        <div class="myaccount-tab-content py-28 px-16">
+        <div class="tab-content py-28 px-16">
+            <div class="content-header mb-12 flex gap-x-16 justify-start items-center">
+                <div class="text w-fit">
+                    <h2 class=" text-2xl font-bold text-black">
+                        Perguntas frequentes
+                    </h2>
+                </div>
+                <div class="input-container w-full h-full max-w-[16.438rem] bg-[#F4F4F4] border border-[#E9E9E9] rounded-lg p-3 flex gap-2 justify-start items-center">
+                    <div class="search-icon">
+                        <label for="search">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </label>
+                    </div>
+                    <input
+                    class="focus:outline-none bg-transparent w-full h-full placeholder:text-[#969696] placeholder:text-sm"
+                    type="text"
+                    id="search"
+                    placeholder="Pesquisar ajuda">
+                </div>
+            </div>
+
             @switch (this.activeTab) {
                 @case (tabsEnum.MY_ACCOUNT) {
-                    <mi-my-account-tab-content></mi-my-account-tab-content>
+                    <mi-my-account-tab-content [contents]="this.myAccountContents()" [isLoading]="this.isLoading()"></mi-my-account-tab-content>
                 }
                 @case (tabsEnum.REQUESTS) {
-                    <mi-requests-tab-content></mi-requests-tab-content>
+                    <mi-requests-tab-content [contents]="this.requestsContents()" [isLoading]="this.isLoading()"></mi-requests-tab-content>
                 }
                 @case (tabsEnum.PAYMENTS) {
-                    <mi-payments-tab-content></mi-payments-tab-content>
+                    <mi-payments-tab-content [contents]="this.paymentsContents()" [isLoading]="this.isLoading()"></mi-payments-tab-content>
                 }
                 @case (tabsEnum.SHIPPING) {
-                    <mi-shippings-tab-content></mi-shippings-tab-content>
+                    <mi-shippings-tab-content [contents]="this.shippingContents()" [isLoading]="this.isLoading()"></mi-shippings-tab-content>
                 }
                 @case (tabsEnum.DEVOLUTION) {
-                    <mi-devolution-tab-content></mi-devolution-tab-content>
+                    <mi-devolution-tab-content [contents]="this.devolutionContents()" [isLoading]="this.isLoading()"></mi-devolution-tab-content>
                 }
                 @case (tabsEnum.OTHERS) {
-                    <mi-others-tab-content></mi-others-tab-content>
+                    <mi-others-tab-content [contents]="this.othersContents()" [isLoading]="this.isLoading()"></mi-others-tab-content>
                 }
                 @default {}
             }
