@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './components/containers/auth.component';
-import { SignInComponent } from './components/views/sign-in/sign-in.component';
-import { SignUpComponent } from './components/views/sign-up/sign-up.component';
-import { ForgotPasswordComponent } from './components/views/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './components/views/reset-password/reset-password.component';
+import { SignInComponent as StoreSignIn } from './components/views/store/sign-in/sign-in.component';
+import { SignUpComponent } from './components/views/store/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './components/views/store/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/views/store/reset-password/reset-password.component';
 import { ResetPasswordGuard } from '@core/guards/reset-password-guard.guard';
+import { SignInComponent as AdminSignIn } from './components/views/admin/sign-in/sign-in.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'store',
     component: AuthComponent,
     children: [
       {
@@ -20,7 +21,7 @@ const routes: Routes = [
       {
         path: 'sign-in',
         title: 'Entrar na minha conta - Mistore, Autenticação',
-        component: SignInComponent
+        component: StoreSignIn
       },
       {
         path: 'sign-up',
@@ -42,6 +43,21 @@ const routes: Routes = [
         path: '**',
         redirectTo: '/auth/sign-in',
         pathMatch: 'full'
+      }
+    ]
+  },
+  {
+    path: 'management',
+    component: AuthComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'sign-in',
+        pathMatch: 'full'
+      },
+      {
+        path: 'sign-in',
+        component: AdminSignIn
       }
     ]
   }

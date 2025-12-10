@@ -82,12 +82,12 @@ export class StoreAdminComponent extends SidebarExtender implements OnInit, Afte
           routeTo: 'help',
           active: false
         },
-        {
-          icon: { iconRef: 'settings' },
-          label: 'Definições',
-          routeTo: 'settings',
-          active: false
-        }
+        // {
+        //   icon: { iconRef: 'settings' },
+        //   label: 'Definições',
+        //   routeTo: 'settings',
+        //   active: false
+        // }
       ]
     }
   ];

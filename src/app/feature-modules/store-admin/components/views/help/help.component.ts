@@ -1,7 +1,8 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HelpTabsEnum } from '@store/enums/help-tabs.enum';
+import { HelpTabsEnum } from '@store/components/views/help/help-tabs.enum';
 import { HelpFacade } from './help.facade';
+import { Faq } from './help.models';
 
 @Component({
     selector: 'mi-help',
@@ -14,12 +15,12 @@ export class HelpComponent implements OnInit {
   activeTab!: HelpTabsEnum;
   tabsEnum = HelpTabsEnum;
 
-  myAccountContents: WritableSignal<any[]> = signal([]);
-  requestsContents: WritableSignal<any[]> = signal([]);
-  paymentsContents: WritableSignal<any[]> = signal([]);
-  shippingContents: WritableSignal<any[]> = signal([]);
-  devolutionContents: WritableSignal<any[]> = signal([]);
-  othersContents: WritableSignal<any[]> = signal([]);
+  myAccountContents: WritableSignal<Faq[]> = signal([]);
+  requestsContents: WritableSignal<Faq[]> = signal([]);
+  paymentsContents: WritableSignal<Faq[]> = signal([]);
+  shippingContents: WritableSignal<Faq[]> = signal([]);
+  devolutionContents: WritableSignal<Faq[]> = signal([]);
+  othersContents: WritableSignal<Faq[]> = signal([]);
 
   facade = inject(HelpFacade);
   isLoading = signal(false);

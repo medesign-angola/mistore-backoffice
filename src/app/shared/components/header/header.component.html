@@ -3,17 +3,17 @@
         
         @if (this.appearGreetings()) {
         <div class="greetings-col max-w-[14.188rem] grow-1 border-r border-[#E9E9E9]">
-                <div class="title mb-2">
-                    <h1 class="text-black text-xl font-semibold limited-text one-line">
-                        Olá, {{ this.user.Name.split(' ')[0] }}
-                    </h1>
-                </div>
-                <div class="tiny-text">
-                    <p class="text-[#999] text-sm limited-text one-line">
-                        Os seus dados mais recentes
-                    </p>
-                </div>
+            <div class="title mb-2">
+                <h1 class="text-black text-xl font-semibold limited-text one-line">
+                    Olá, {{ this.user.Name.split(' ')[0] }}
+                </h1>
             </div>
+            <div class="tiny-text">
+                <p class="text-[#999] text-sm limited-text one-line">
+                    Os seus dados mais recentes
+                </p>
+            </div>
+        </div>
         } @else {
             <div class="w-full max-w-[14.188rem] h-full"></div>
         }

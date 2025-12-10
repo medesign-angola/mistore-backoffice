@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HelpTabsEnum } from "@store/enums/help-tabs.enum";
+import { HelpTabsEnum } from "@store/components/views/help/help-tabs.enum";
 import { delay, Observable, of } from "rxjs";
 import { HelpApiService } from "./help.api.service";
+import { HelpContent } from "./help.models";
 
 @Injectable({
     providedIn: HelpApiService
@@ -152,7 +153,3 @@ export class HelpSimulator {
     }
 
 }
-
-type HelpContent = {
-    [tag in HelpTabsEnum]: any[];
-};

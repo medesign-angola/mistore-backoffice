@@ -1,4 +1,5 @@
 import { Component, input, model } from '@angular/core';
+import { Faq } from '../../help.models';
 
 @Component({
     selector: 'mi-requests-tab-content',
@@ -7,6 +8,6 @@ import { Component, input, model } from '@angular/core';
     standalone: false
 })
 export class RequestsComponent {
-    contents = input<any[]>([]);
+    contents = input<Faq[]>([]);
     isLoading = input<boolean>(false);
 }
